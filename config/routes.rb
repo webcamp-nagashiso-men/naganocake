@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   
   # 会員側のルーティング設定
   scope module: :public do
-    get 'top'=>'homes#top'
+    get '/'=>'homes#top'
     resources :product
   end
 
