@@ -9,6 +9,48 @@
   </head>
 
   <body>
+    <heaedr>
+      
+      <nav class="nav navbar-nav navbar-left title">
+        <% if admin_signed_in? %>
+          <%= link_to "NaganoCake", admins_sign_in_path %>
+        <% else %>
+          <%= link_to "NaganoCake", root_path %>
+        <% end %>
+      </nav>
+     
+     
+      
+      <ul class="navbar-nav ml-auto">
+        <% if signed_in? %>
+        
+        <li class= "name">
+          ようこそ,<%= current_end_user.name_last %>さん！
+        </li>
+        <li><%= link_to "マイページ" %></li>
+        <li><%= link_to "商品一覧" %></li>
+        <li><%= link_to "カート" %></li>
+        <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
+        
+        <% else %>
+        
+        <li><%= link_to "About", about_path %></li> 
+        <li><%= link_to "商品一覧" %></li>
+        <li><%= link_to "新規登録", new_end_user_registration_path %></li>
+        <li><%= link_to "ログイン", new_end_user_session_path %></li>
+       
+        
+        <% end %>
+      </ul>
+   
+      
+    </heaedr>
+    
+    
+    
+    
+    
+    
     <%= yield %>
   </body>
 </html>
