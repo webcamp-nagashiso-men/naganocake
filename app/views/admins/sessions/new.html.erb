@@ -1,0 +1,26 @@
+
+<div class="container px-5 px-sm-10">
+<h4>管理者ログイン</h4>
+ </div>
+
+<div class="mx-auto" style="width: 400px;">
+<%= form_for(resource, as: resource_name, url: admins_sign_in_path(resource_name)) do |f| %>
+<div class="py-2">
+  <div class="row">
+    <p>メールアドレス</p><%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+</di
+
+<div class="py-2">
+  <div class="row">
+    <p>パスワード</p><%= f.password_field :password, autocomplete: "current-password" %>
+  </div>
+ </div>
+
+
+<div class="py-2">
+<button class="btn btn-primary" type="submit">ログイン</button>
+</div>
+<% end %>
+
+</div>
