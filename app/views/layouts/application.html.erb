@@ -31,7 +31,7 @@
                 ようこそ <%= current_end_user.name_last %> さん！
               </li>
               <li>
-                <%= link_to "マイページ", class: 'nav-link  badge badge-pill badge-light'%>
+                <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill badge-light'%>
               </li>
               <li>
                 <%= link_to "商品一覧", class: 'nav-link  badge badge-pill badge-light'%>

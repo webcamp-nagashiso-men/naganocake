@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
 
 
-
   get 'search/search'
 devise_for :admins, skip: [:sessions]
   devise_scope :admin do
@@ -28,6 +27,14 @@ devise_for :admins, skip: [:sessions]
     get 'products' => 'products#index'
     get 'products' => 'products#show'
     resources :product
+    
+    resources :end_users,only:[:show,:edit,:update] do
+      member do
+      get 'quit' 
+      patch 'out' 
+    end
+    end
+    
   end
 
 
