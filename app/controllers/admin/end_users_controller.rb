@@ -13,9 +13,15 @@ class Admin::EndUsersController < ApplicationController
 
   def update
     @end_user = EndUser.find(params[:id])
-    if  @end_user.update(end_user_params)
-    flash[:notice] = "User was successfully updated."
-    end
+    @end_user.update(end_user_params)
+    redirect_to admin_end_user_path(@end_user.id)
   end
+
+    private
+
+  def end_user_params
+    params.require(:end_user).permit(:name_last,:name_first,:hurigana_last,:hurigana_first, :postal_code,:address,:telephone_number,:email,:is_deleted)
+  end
+
 
 end

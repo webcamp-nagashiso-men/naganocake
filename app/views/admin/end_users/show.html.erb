@@ -1,52 +1,50 @@
 
 
-<%= form_with model: @end_user, local:true do |f| %>
-<h2><%= end_user.name %>さんの会員詳細</h2>
+<h2><%= @end_user.name_last %>さんの会員詳細</h2>
 
   <table class="table">
     <tr>
     <th>会員ID</th>
-    <th><%= end_user.end_user_id %></th>
+    <th><%= @end_user.id %></th>
     </tr>
 
     <tr>
     <th>氏名</th>
-    <th><%= end_user.name_last %></th><th><%= end_user.name_first %></th>
+    <th><%= @end_user.name_last %><%= @end_user.name_first %></th>
     </tr>
 
     <tr>
     <th>フリガナ</th>
-    <th><%= end_user.hurigaa_last %></th><th><%= end_user.hurigana_first%></th>
+    <th><%= @end_user.hurigana_last %><%= @end_user.hurigana_first%></th>
     </tr>
 
     <tr>
     <th>郵便番号</th>
-    <th><%= end_user.postal_code%></th>
+    <th><%= @end_user.postal_code%></th>
     </tr>
 
     <tr>
     <th>住所</th>
-    <th><%= end_user.address%></th>
+    <th><%= @end_user.address%></th>
     </tr>
 
 
     <tr>
     <th>電話番号</th>
-    <th><%= end_user.telephone_number%></th>
+    <th><%= @end_user.telephone_number%></th>
     </tr>
 
     <tr>
     <th>メールアドレス</th>
-    <th><%= end_user.email %></th>
+    <th><%= @end_user.email %></th>
     </tr>
 
      <tr>
     <th>会員ステータス</th>
-    <th><%= end_user.is_deleted %></th>
+    <th><%= @end_user.is_deleted %></th>
     </tr>
 
   </table>
-<% end %>
 
-<td><%= link_to "編集する", edit_admin_end_user(@end_user),class:"btn btn-success" %></td>
-<td><%= link_to "注文履歴一覧を見る", edit_admin_end_user(@end_user),class:"btn btn-primary" %></td>
+<td><%= link_to "編集する", edit_admin_end_user_path(@end_user),class:"btn btn-success" %></td>
+<td><%= link_to "注文履歴一覧を見る", edit_admin_end_user_path(@end_user),class:"btn btn-primary" %></td>
