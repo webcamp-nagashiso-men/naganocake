@@ -5,16 +5,17 @@ class Admin::ProductsController < ApplicationController
   end
   
   def index
-    @product = Product.all
+    @products = Product.all
   end
   
   def create
-    product = Product.new(product_params)
-    product.save
-    redirect_to admin_product_path
+    @product = Product.new(product_params)
+    @product.save
+    redirect_to admin_products_path
   end
   
   def show
+    # @product = Product.find(params[:id])
   end
   
   def edit
