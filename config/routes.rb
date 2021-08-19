@@ -25,9 +25,7 @@ devise_for :admins, skip: [:sessions]
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    get 'products' => 'products#index'
-    get 'products' => 'products#show'
-    resources :product
+    resources :products
   end
 
 
