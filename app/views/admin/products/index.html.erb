@@ -1,0 +1,28 @@
+<h4>商品一覧</h4>
+<table>
+  <thead>
+    <tr>
+      <th>商品ID</th>
+      <th>商品名</th>
+      <th>税抜価格</th>
+      <th>ジャンル</th>
+      <th>ステータス</th>
+    </tr>
+  </thead>
+  
+  <% @products.each do |product| %>
+  <tbody>
+    <tr>
+      <td><%= product.id %></td>
+    
+      <td><%= product.name %></td>
+    
+      <td><%= product.price %></td>
+    
+      <!--<td><%#= product.genre.name %></td>-->
+    
+      <!--<td><%#= product.is_active %></td>-->
+    </tr> 
+  </tbody>
+  <% end %> 
+</table>

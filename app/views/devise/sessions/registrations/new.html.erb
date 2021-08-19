@@ -4,26 +4,24 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
 
-
-
+　
+   
    <div class="field">
     <%= f.label :名前 %>
-
+    
     <%= f.label :（姓） %>
     <%= f.text_field :name_last, autofocus: true %>
-
+    
     <%= f.label :（名） %>
     <%= f.text_field :name_first, autofocus: true %>
   </div>
-
+  
     <div class="field">
-    <%= f.label :フリガナ %>
-
+    <%= f.label :フリガナ） %>
+    
     <%= f.label :（セイ） %>
-
-    <%= f.text_field :hurigaa_last, autofocus: true %
-
-
+    <%= f.text_field :hurigana_first, autofocus: true %>
+  
     <%= f.label :（メイ） %>
     <%= f.text_field :hurigana_first, autofocus: true %>
   </div>
@@ -38,17 +36,17 @@
     <%= f.label :郵便番号（ハイフンなし） %>
     <%= f.text_field :postal_code, autofocus: true %>
   </div>
-
+  
    <div class="field">
     <%= f.label :住所 %>
     <%= f.text_field :address, autofocus: true %>
   </div>
-
+  
    <div class="field">
     <%= f.label :電話番号（ハイフンなし） %>
-    <%= f.text_field :telephone_number, autofocus: true %>
+    <%= f.text_field :name_first, autofocus: true %>
   </div>
-
+  
   <div class="field">
     <%= f.label :パスワード（６文字以上） %>
     <% if @minimum_password_length %>
@@ -65,11 +63,13 @@
   <div class="actions">
     <%= f.submit "新規登録" %>
   </div>
-
+  
+  
+  
 <% end %>
 
 
 
 <h4>すでに登録済みの方</h4>
 
-<p>　<%= link_to "こちら",end_user_session_path %>  　からログインしてください。</p>
+<p>　<%= link_to "こちら",end_user_session_path %>  　からログインしてください。</p> 
