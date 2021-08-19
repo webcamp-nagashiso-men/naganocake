@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :end_users
   end
 
+
   devise_scope :admin do
     get '/admins/sign_in' => 'admins/sessions#new'
     post '/admins/sign_in' => 'admins/sessions#create'
@@ -21,7 +22,22 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
+
+    get 'products' => 'products#index'
+    get 'products' => 'products#show'
+    resources :product
+    
+    resources :end_users,only:[:show,:edit,:update] do
+      member do
+      get 'quit' 
+      patch 'out' 
+    end
+    end
+    
+    resources :shipping_addresses
+
     resources :products
+
   end
   get 'search/search'
 
