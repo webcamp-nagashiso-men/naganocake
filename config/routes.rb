@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+
   devise_for :admins, skip: [:sessions]
   devise_for :end_users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   # 管理者側のルーティング設定
   namespace :admin do
     resources :products
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
     delete '/admins/sign_out' => 'admins/sessions#des'
   end
 
+
   # 会員側のルーティング設定
   scope module: :public do
     root to: 'homes#top'
@@ -23,5 +26,6 @@ Rails.application.routes.draw do
     resources :product
   end
   get 'search/search'
+
 
 end
