@@ -41,7 +41,7 @@
 
      <tr>
     <th>会員ステータス</th>
-    <th><%= @end_user.is_deleted %></th>
+    <th><%= @end_user.is_deleted ? '退会' : '有効' %>
     </tr>
 
   </table>
