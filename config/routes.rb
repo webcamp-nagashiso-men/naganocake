@@ -2,6 +2,26 @@ Rails.application.routes.draw do
 
 
 
+  namespace :public do
+    get 'shipping_addresses/index'
+  end
+
+  namespace :public do
+    get 'shipping_addresses/create'
+  end
+
+  namespace :public do
+    get 'shipping_addresses/destroy'
+  end
+
+  namespace :public do
+    get 'shipping_addresses/edit'
+  end
+
+  namespace :public do
+    get 'shipping_addresses/update'
+  end
+
   get 'search/search'
 devise_for :admins, skip: [:sessions]
   devise_scope :admin do
@@ -35,6 +55,7 @@ devise_for :admins, skip: [:sessions]
     end
     end
     
+    resources :shipping_addresses
   end
 
 
