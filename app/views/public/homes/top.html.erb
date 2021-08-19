@@ -27,8 +27,20 @@
       </div>
       <div>
         <h4 class="text-new">新着商品</h4>
-          <%# @products.last(4).each do |product| %>
-          <%# end 商品一覧を作成するまでコメントアウト%>
+          <% @products.last(4).each do |product| %>
+            <% if product.is_active == true %>
+              <%= link_to product_path(product.id), class: "btn-link" do %>
+                <%= attachment_image_tag(product, :image, size: "200x100") %>
+                <%= product.name %>
+              <% end %>
+
+              <% if product.is_active == true %>
+                <p>¥<%= product.add_tax_price.to_s(:delimited) %></p>
+              <% elsif product.is_active == false %>
+                <p>SOLD OUT</p>
+              <% end %>
+            <% end %>
+          <% end %>
       </div>
       <p align="right"><%= link_to "全ての商品を見る>", products_path %></p>
   </div>

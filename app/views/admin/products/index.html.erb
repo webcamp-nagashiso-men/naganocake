@@ -9,20 +9,20 @@
       <th>ステータス</th>
     </tr>
   </thead>
-  
+
   <% @products.each do |product| %>
   <tbody>
     <tr>
       <td><%= product.id %></td>
-    
+
       <td><%= product.name %></td>
-    
+
       <td><%= product.price %></td>
-    
-      <!--<td><%#= product.genre.name %></td>-->
-    
+
+      <td><%= product.genre.name %></td>
+
       <!--<td><%#= product.is_active %></td>-->
-    </tr> 
+    </tr>
   </tbody>
-  <% end %> 
+  <% end %>
 </table>
