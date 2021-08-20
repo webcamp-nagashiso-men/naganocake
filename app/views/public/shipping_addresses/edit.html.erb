@@ -1,0 +1,21 @@
+<h5>配送先登録/一覧</h5>
+<%= form_for @shipping_address do |f| %>
+<div class="field">
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :postal_code, autofocus: true %>
+</div>
+
+<div class="field">
+    <%= f.label :住所 %>
+    <%= f.text_field :address, autofocus: true %>
+</div>
+
+<div class="field">
+    <%= f.label :宛名 %>
+    <%= f.text_field :name, autofocus: true %>
+</div>
+
+ <div class="col-md-1 text-right">
+    <%= f.submit "変更内容を保存",  class: "btn btn-lg btn-success w-80"%>
+</div>
+<% end %>
