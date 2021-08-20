@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     get 'about' => 'homes#about'
 
     get 'products' => 'products#index'
-    get 'products' => 'products#show'
-    resources :product
+    get 'products/:id' => 'products#show'
+    resources :products
 
     resources :end_users,only:[:show,:edit,:update] do
       member do
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     resources :shipping_addresses
 
     resources :products
-    resources :cart_product
+    resources :cart_products
 
   end
   get 'search/search'

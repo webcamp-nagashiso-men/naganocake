@@ -1,6 +1,4 @@
 class Public::ProductsController < ApplicationController
-  before_action :authenticate_end_user!, only: [:show]
-
     def top
       @products = Product.all.order(created_at: :desc)
       @genres = Genre.all
@@ -18,7 +16,7 @@ class Public::ProductsController < ApplicationController
 	end
 
 	private
-	
+
 	def product_params
 	  parmas.require(:product).permit(:image_id, :name, :price, :guide, :is_active)
 	end

@@ -10,9 +10,9 @@
         <%= @product.guide %>
       </div>
       <div class="field product-price">
-        <h3>¥ <%#= @product.add_tax_price.to_s(:delimited) %><%# 商品追加されてから %>
+        <h3>¥ <%= @product.add_tax_price.to_s(:delimited) %>
         <%# add_tax_price=models/product.rbで消費税計算 %>
-        <span class="tax">(税込)</span>
+        (税込)
         </h3>
       </div>
       </div>
