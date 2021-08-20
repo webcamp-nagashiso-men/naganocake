@@ -9,11 +9,13 @@ class Public::ShippingAddressesController < ApplicationController
     @shipping_address = ShippingAddress.new(shipping_address_params)
     @shipping_address.end_user_id = current_end_user.id
     @shipping_address.save
-    redirect_to public_shipping_addresses_path, notice: '新しい住所が作成されました'
+    redirect_to shipping_addresses_path, notice: '新しい住所が作成されました'
   end
 
   def destroy
     @shipping_address = ShippingAddress.find(params[:id])
+    @shipping_address.destroy
+    redirect_to shipping_addresses_path
 
   end
 
@@ -23,7 +25,8 @@ class Public::ShippingAddressesController < ApplicationController
 
   def update
     @shipping_address = ShippingAddress.find(params[:id])
-
+    @shipping_address.update(shipping_address_params)
+    redirect_to shipping_addresses_path
   end
   
   private
