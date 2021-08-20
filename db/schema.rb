@@ -11,8 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema.define(version: 20210820061829) do
-
+ActiveRecord::Schema.define(version: 20210819114943) do
 
 
   create_table "admins", force: :cascade do |t|
@@ -81,9 +80,9 @@ ActiveRecord::Schema.define(version: 20210820061829) do
     t.integer  "price"
     t.text     "guide"
     t.string   "image_id"
-    t.boolean  "is_active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "is_active",  default: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "shipping_addresses", force: :cascade do |t|

@@ -13,7 +13,17 @@
 	  </h2>
 	<div>
 	  <% @products.each do |product| %>
-	  <% if product.genre.is_valid == true %>
+	  <% if product.is_active == true %>
+	    <%= link_to product_path(product.id), class: "btn-link" do %>
+      <%= attachment_image_tag(product, :image, size: "200x130") %>
+      <%= product.name %>
+    <% end %>
+
+    <% if product.is_active == true %>
+      <p>¥<%= product.add_tax_price.to_s(:delimited) %></p>
+    <% elsif product.is_active == false %>
+      <p>SOLD OUT</p>
+      <% end %>
 	  <% end %>
 	  <% end %>
 	 <div class="text-center"><%= paginate(@products) %></div>

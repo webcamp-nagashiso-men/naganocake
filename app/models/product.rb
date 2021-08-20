@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
+  belongs_to :genre
   attachment :image
+
 
   validates :name, presence: true
   validates :guide, presence: true
