@@ -23,7 +23,7 @@
       <p>¥<%= product.add_tax_price.to_s(:delimited) %></p>
     <% elsif product.is_active == false %>
       <p>SOLD OUT</p>
-      <% end %>
+    <% end %>
 	  <% end %>
 	  <% end %>
 	 <div class="text-center"><%= paginate(@products) %></div>
