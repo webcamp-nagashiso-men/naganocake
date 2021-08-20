@@ -11,7 +11,7 @@
 
 .main-visual-text {
   position: absolute;
-  left: 27%;
+  left: 30%;
   top: 30%;
   max-width: 100%;
   transform: translate(-50%,-50%);
@@ -24,8 +24,8 @@
   padding-bottom: 10px;
 }
 
-.products {
-  float: left;
+.newproducts {
+  display: flex;
 }
 
 .about-image {
