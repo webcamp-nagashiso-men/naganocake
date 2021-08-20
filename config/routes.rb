@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
   devise_for :admins, skip: [:sessions]
   devise_for :end_users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -37,8 +39,15 @@ Rails.application.routes.draw do
     resources :shipping_addresses
 
     resources :products
+    
+    resources :orders,only:[:index,:new,:show,:create] do
+      post 'check'
+      get 'complete'
+    end
 
   end
+  
+  
   get 'search/search'
 
 
