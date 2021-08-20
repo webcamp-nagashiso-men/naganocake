@@ -15,7 +15,7 @@
         <td><%= end_user.id %></td>
         <td><%= link_to end_user.name_last, admin_end_user_path(end_user) %><%= link_to end_user.name_first, admin_end_user_path(end_user) %></td>
         <td><%= end_user.email %></td>
-        <td><%= end_user.is_deleted %></td>
+        <td><%= end_user.is_deleted ? '退会' : '有効' %></td>
        </tr>
       </tbody>
       <% end %>

@@ -39,7 +39,8 @@
 
      <tr>
     <th>会員ステータス</th>
-    <th><%= f.text_field :is_deleted %></th>
+
+    <th><%= f.select :is_deleted ,[['退会',true],['有効',false]] %></th>
     </tr>
 
 </table>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products
     resources :end_users
+    resources :genres
   end
 
 
@@ -28,14 +29,14 @@ Rails.application.routes.draw do
     get 'products' => 'products#index'
     get 'products' => 'products#show'
     resources :product
-    
+
     resources :end_users,only:[:show,:edit,:update] do
       member do
-      get 'quit' 
-      patch 'out' 
+      get 'quit'
+      patch 'out'
     end
     end
-    
+
     resources :shipping_addresses
 
     resources :products
