@@ -1,29 +1,45 @@
-<h4>商品詳細</h4>
-<%#= attachment_image_tag @praduct, :image, :fill, 100, 100, fallback: '' %>
 
-<tabel>
-  <tr>
-    <td>商品名</td>
-    <td><%= @product.name %></td>
-  </tr>
-  <tr>
-    <td>商品説明</td>
-    <td><%= @product.guide %></td>
-  </tr>
-  <tr>
-    <td>ジャンル</td>
-    <td><%#= @product.genre.name %></td>
-  </tr>
-  <tr>
-    <td>税込価格</td>
-    <td><%= @product.price %></td>
-  </tr>
-  <tr>
-    <td>ステータス</td>
-    <td><%#= @product.is_active %></td>
-  </tr>
-</tabel>
-
-  <div>
-    <%= link_to "編集する", edit_admin_product_path, class: "btn btn-success" %>
-  </div>
+    <h2><span class="badge badge-light">商品詳細</span></h2>
+    <%= attachment_image_tag @praduct, :image, :fill, 300, 300, fallback: 'no_image.jpg' %>
+ 
+  
+  
+    <table class="mx-auto">
+      <tr>
+        <td><h6>商品名</h6></td>
+        <td><%= @product.name %></td>
+      </tr>
+      
+      <tr>
+        <td><h6>商品説明</h6></td>
+        <td><%= @product.guide %></td>
+      </tr>
+      
+      <tr>
+        <td><h6>ジャンル</h6></td>
+        <td><%#= @product.genre.name %></td>
+      </tr>
+      
+      <tr>
+        <td><h6>税込価格<br>(税抜価格)</h6></td>
+        <td><%= @product.add_tax_price.to_s(:dalimited) %></td>
+            (<%= @product.price %>)円
+      </tr>
+      
+      <tr>
+        <td><h6>販売ステータス</h6></td>
+        <td>
+          <% if @product.is_active %>
+            販売中
+          <% else %>
+            販売停止中
+          <% end %>
+        </td>  
+      </tr>
+    
+        <td>
+          <%= link_to "編集する", edit_admin_product_path(@product.id), class: "btn btn-sm btn-success" %>
+        </td>
+    </tabel>
+        
+				
