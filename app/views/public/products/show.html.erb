@@ -13,12 +13,12 @@
             <br>
             <strong>
               ¥ <%= @product.add_tax_price.to_s(:delimited) %>
-              <%# add_tax_price=models/product.rbで消費税計算 %>
+              <%# add_tax_price=models/product.rbで消費税定義 %>
               (税込)
             </strong>
               <div>
               <% if @product.is_active == true %>
-                <%= form_for(@cart_product , url:"/" , method: :post) do |f| %><%# カートができてから遷移先指定 %>
+                <%= form_for(@cart_product , url: cart_products_path , method: :post) do |f| %>
                   <%= f.hidden_field :product_id, value: @product.id %>
                   <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
                   <%= f.submit "カートに入れる", class: "btn btn-success" %>
