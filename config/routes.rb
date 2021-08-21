@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :products
     resources :end_users
     resources :genres
+    resources :orders
+    get 'order_products/:id' => 'order_products#update'
   end
 
 
@@ -41,15 +43,17 @@ Rails.application.routes.draw do
 
     resources :products
     resources :cart_products
-    
+
     resources :orders,only:[:index,:new,:show,:create] do
-      post 'check'
+      collection do
+      post '/check' => 'orders#check'
       get 'complete'
+    end
     end
 
   end
-  
-  
+
+
   get 'search/search'
 
 
