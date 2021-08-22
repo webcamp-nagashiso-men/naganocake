@@ -11,15 +11,15 @@
   <body>
 
 
-    <heaedr style= " border-bottom: 1px solid black;">
+    <header>
      <nav class="navbar navbar-expand-lg">
        <div class="container">
 
         <h2 class="nav navbar-nav navbar-left title" style="font-size: 30px;">
           <% if admin_signed_in? %>
-            <%= link_to "NaganoCake", admin_products_path, class: "text-dark" %>
+            <%= link_to image_tag("horizontal_on_white_by_logaster (2).png", class:"heaedr_logo"), admin_products_path, class: "text-dark" %>
           <% else %>
-            <%= link_to "NaganoCake", root_path, class: "text-dark" %>
+            <%= link_to image_tag("horizontal_on_white_by_logaster (2).png", class:"heaedr_logo"), root_path, class: "text-dark" %>
           <% end %>
         </h2>
 
@@ -83,13 +83,16 @@
         </div>
        </div>
      </nav>
-    </heaedr>
+    </header>
       <% if flash[:notice] %>
         <div class="alert alert-primary text-center" role="alert"><strong><%= notice %></strong></div>
       <% end %>
       <% if flash[:alert] %>
         <div class="alert alert-danger text-center" role="alert"><strong><%= alert %></strong></div>
       <% end %>
-      <%= yield %>
+
   </body>
+  <main>
+    <%= yield %>
+  </main>
 </html>

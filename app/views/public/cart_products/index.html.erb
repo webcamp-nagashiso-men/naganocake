@@ -32,7 +32,7 @@
               <%# add_tax_price = cart_product.rbで定義した1商品の合計金閣 %>
             </td>
             <td>
-              <%= form_for(cart_product, url: cart_products_path(cart_product), method: :patch , remote: true)do |f| %>
+              <%= form_for(cart_product, url: cart_product_path(cart_product), method: :patch , remote: true)do |f| %>
                 <%= f.number_field :quantity, size: 10, min: 1 %>
                 <%= f.submit "変更", class: "btn btn-info" %>
               <% end %>

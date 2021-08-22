@@ -5,8 +5,9 @@ class Public::CartProductsController < ApplicationController
   end
 
   def update
-    @cart_product.update(quantity: params[:quantity].to_i) #to_iで入力した個数を整数に変換
-    redirect_to 'cart_products_path'
+    @cart_product = CartProduct.find(params[:id])
+    @cart_product.update(quantity: params[:cart_product][:quantity].to_i) #to_iで入力した個数を整数に変換
+    redirect_to cart_products_path, notice: "更新しました"
   end
 
   def create
@@ -20,20 +21,20 @@ class Public::CartProductsController < ApplicationController
       @cart_product.save
     end
 
-    redirect_to cart_products_path
+    redirect_to cart_products_path, notice: "カートに追加しました"
 
   end
 
   def destroy
     @cart_product = CartProduct.find(params[:id])
     @cart_product.destroy
-    redirect_to cart_products_path
+    redirect_to cart_products_path, notice: "削除しました"
   end
 
   def all_destroy
     @cart_products = current_end_user.cart_products
     @cart_products.destroy_all
-    redirect_to cart_products_path, notice: "削除しました"
+    redirect_to cart_products_path, notice: "カートを空にしました"
   end
 
   private
