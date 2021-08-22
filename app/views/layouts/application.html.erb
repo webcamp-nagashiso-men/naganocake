@@ -84,7 +84,12 @@
        </div>
      </nav>
     </heaedr>
-
-    <%= yield %>
+      <% if flash[:notice] %>
+        <div class="alert alert-primary text-center" role="alert"><strong><%= notice %></strong></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger text-center" role="alert"><strong><%= alert %></strong></div>
+      <% end %>
+      <%= yield %>
   </body>
 </html>

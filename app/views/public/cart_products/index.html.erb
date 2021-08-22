@@ -3,9 +3,9 @@
 <div calss="row">
   <div class="col-lg-11">
     <h4>ショッピングカート</h4>
-    <% if @cart_items.present? %>
+    <% if @cart_products.present? %>
     <div>
-      <%= link_to "カートを空にする", customers_cart_items_path, method: :delete, data: {confirm: 'カートを空にします'}, class: "btn btn-danger" %>
+      <%= link_to "カートを空にする", destroy_all_cart_products_path, method: :delete, data: {confirm: 'カートを空にします'}, class: "btn btn-danger" %>
     </div>
     <% end %>
     <table class="table table-hover">
@@ -15,11 +15,12 @@
           <th>単価(税込)</th>
           <th>数量</th>
           <th>小計</th>
-          <th><%# 削除ボタン用 %></th>
+          <th><%# 削除ボタン用スペース %></th>
         </tr>
       </thead>
 
       <tbody>
+        <%# 消費税と個数はモデルで定義 %>
         <% @cart_products.each do |cart_product| %>
   			  <tr id="cart-<%= cart_product.id %>">
             <td>
@@ -27,7 +28,8 @@
               <%= cart_product.product.name %>
             </td>
             <td>
-              ¥<%#= tax_price(cart_product.product.tax_out_price).to_s(:delimited) %>
+              ¥<%= cart_product.add_tax_price.to_s(:delimited) %>
+              <%# add_tax_price = cart_product.rbで定義した1商品の合計金閣 %>
             </td>
             <td>
               <%= form_for(cart_product, url: cart_products_path(cart_product), method: :patch , remote: true)do |f| %>
@@ -36,10 +38,11 @@
               <% end %>
             </td>
             <td>
-              ¥<%#= purchase_price(cart_product).to_s(:delimited) %><%# purchase_price=小計 %>
+              ¥<%= cart_product.add_tax_subtotal.to_s(:delimited) %>
+              <%# add_tax_subprice = cart_product.rbで定義した商品×の合計金閣 %>
             </td>
             <td>
-              <%= link_to " 削除する", cart_products_path(cart_product), method: :delete, remote: true, data: {confirm: "#{cart_product.product.name}を削除しますか？"}, class: "btn btn-danger" %>
+              <%= link_to " 削除する", cart_product_path(cart_product), method: :delete, remote: true, data: {confirm: "#{cart_product.product.name}を削除しますか？"}, class: "btn btn-danger" %>
           </tr>
         <% end %>
       </tbody>
