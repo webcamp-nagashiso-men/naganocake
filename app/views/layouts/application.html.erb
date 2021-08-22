@@ -7,14 +7,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  
+
   <body>
 
 
     <heaedr style= " border-bottom: 1px solid black;">
      <nav class="navbar navbar-expand-lg">
        <div class="container">
-      
+
         <h2 class="nav navbar-nav navbar-left title" style="font-size: 30px;">
           <% if admin_signed_in? %>
             <%= link_to "NaganoCake", admin_products_path, class: "text-dark" %>
@@ -22,12 +22,11 @@
             <%= link_to "NaganoCake", root_path, class: "text-dark" %>
           <% end %>
         </h2>
-     
-     
+
+
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
-            <% if signed_in? %>
-            
+            <% if end_user_signed_in? %>
               <li class= "name">
                 ようこそ <%= current_end_user.name_last %> さん！
               </li>
@@ -43,31 +42,28 @@
               <li>
                 <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
               </li>
-              
-            
             <% elsif admin_signed_in? %>
-           
               <li>
-                <%= link_to "商品一覧", class: 'nav-link  badge badge-pill badge-light'%>
+                <%= link_to "商品一覧",admin_products_path, class: 'nav-link  badge badge-pill badge-light'%>
               </li>
               <li>
-                <%= link_to "会員一覧", class: 'nav-link  badge badge-pill badge-light'%>
+                <%= link_to "会員一覧",admin_end_users_path, class: 'nav-link  badge badge-pill badge-light'%>
               </li>
               <li>
-                <%= link_to "注文履歴一覧", class: 'nav-link  badge badge-pill badge-light'%>
+                <%= link_to "注文履歴一覧",admin_orders_path, class: 'nav-link  badge badge-pill badge-light'%>
               </li>
               <li>
-                <%= link_to "ジャンル一覧", class: 'nav-link  badge badge-pill badge-light'%>
+                <%= link_to "ジャンル一覧" ,admin_genres_path,class: 'nav-link  badge badge-pill badge-light'%>
               </li>
               <li>
-                <%= link_to "ログアウト", admins_sign_ou_path, method: :delete,  class: 'nav-link  badge badge-pill badge-light'%>
+                <%= link_to "ログアウト", admins_sign_out_path, method: :delete,  class: 'nav-link  badge badge-pill badge-light'%>
               </li>
-              
+
             <% else %>
-        
+
               <li>
                 <%= link_to "About", about_path, class: 'nav-link  badge badge-pill badge-light' %>
-              </li> 
+              </li>
               <li>
                 <%= link_to "商品一覧", class: 'nav-link  badge badge-pill badge-light' %>
               </li>
@@ -77,7 +73,7 @@
               <li>
                 <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link  badge badge-pill badge-light' %>
               </li>
-             
+
             <% end %>
           </ul>
         </div>
