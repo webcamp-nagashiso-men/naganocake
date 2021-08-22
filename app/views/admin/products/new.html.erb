@@ -9,40 +9,40 @@
   <%= form_for (@product), url: admin_products_path, local:true do |f| %>
   <table class="mx-auto">
     <tr>
-    <th><h6>商品画像</h6></th>
-    <th><%= f.attachment_field :image %></th>
+      <th>商品画像</th>
+      <th><%= f.attachment_field :image %></th>
     </tr>
 
     <tr>
-    <th><h6>商品名</h6></th>
-    <th><%= f.text_field :name %></th>
+      <th>商品名</th>
+      <th><%= f.text_field :name %></th>
     </tr>
 
     <tr>
-    <th><h6>商品説明</h6></th>
-    <th><%= f.text_area :guide %></th>
+      <th>商品説明</th>
+      <th><%= f.text_area :guide %></th>
     </tr>
 
     <tr>
-    <th><h4>ジャンル</h4></th>
-    <th><%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "選択してください"} %></th>
-    <%# Genre.allの中から選択したgenre_id(ジャンル)に:idでIDを与える %>
-
+      <th>ジャンル</th>
+      <th><%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "選択してください"} %></th>
+    </tr>      <%# Genre.allの中から選択したgenre_id(ジャンル)に:idでIDを与える %>
 
     <tr>
-    <th><h6>税抜価格</h6></th>
-    <th><%= f.text_field :price %>円</th>
+      <th>税抜価格</th>
+      <th><%= f.text_field :price %>円</th>
     </tr>
 
     <tr>
-    <th><h6>販売ステータス</h6></th>
-    <!--<th><%#= f.select :is_active %></th>-->
-    <th><%= f.select :is_active, [["販売中","false"], ["販売停止中","true"]], include_blank: "--選択してください--" %></th>
+      <th>販売ステータス</th>
+      <!--<th><%#= f.select :is_active %></th>-->
+      <th><%= f.select :is_active, [["販売中","true"], ["販売停止中","false"]], include_blank: "--選択してください--" %></th>
     </tr>
-
   </table>
 
-    <div><%= f.submit "新規登録", class: "btn btn-success" %></div>
+    <div class="text-center">
+      <br><%= f.submit "新規登録", class: "btn btn-sm btn-success" %>
+    </div>
 
   <% end %>
 
