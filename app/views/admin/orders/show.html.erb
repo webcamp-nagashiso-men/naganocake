@@ -13,9 +13,9 @@
 
     <tr>
     <th>配送先</th>
-    <th><%= @order.postal_code %></th>
-    <th><%= @order.address%></th>
-    <th><%= @order.name%></th>
+    <th>〒<%= @order.postal_code %><br>
+    　　<%= @order.address%><br>
+    　　<%= @order.name%></th>
     </tr>
 
     <tr>
@@ -29,8 +29,9 @@
       <th><%= select :order, :order_status, Order.order_statuses.keys.to_a, include_blank: true %></th>
       <th><%= f.submit "更新", class: "btn btn-success btn-sm" %></th>
     </tr>
-  </table>
   <% end %>
+  </table>
+
 
   <div class="col-md-8 offset-md-1">
       <table class="table table-hover table-inverse">

@@ -11,20 +11,18 @@
       </thead>
 
       <tbody>
+          <% @orders.each do |order| %>
        <tr>
-        <% @orders.each do |order| %>
-        <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+        <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"),admin_order_path(order)%></td>
         <td><%= order.end_user.name_last %><%= order.end_user.name_first %></td>
         <td><% @amount = 0 %>
             <% order.order_products.each do |order_product| %>
             <% @amount += order_product.amount %>
             <% end %>
             <%= @amount %></td>
-
         <td><%= order.order_status %></td>
+        </tr>
         <% end %>
-
-       </tr>
       </tbody>
      </table>
      <%= paginate(@orders) %>
