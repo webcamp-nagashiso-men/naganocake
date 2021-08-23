@@ -18,6 +18,7 @@
     
     <tr>
     <th><h6>ジャンル</h6></th>
+    <th><%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "選択してください"} %></th>
     </tr>
     
     <tr>
@@ -28,10 +29,15 @@
     <tr>
     <th><h6>販売ステータス</h6></th>
     <!--<th><%#= f.select :is_active %></th>-->
-    <th><%= f.select :is_active, [["販売中","false"], ["販売停止中","true"]], include_blank: "--選択してください--" %></th>
+    <th><%= f.select :is_active, [["販売中","true"], ["販売停止中","false"]], include_blank: "--選択してください--" %></th>
     </tr>
   
-    <td><div><%= f.submit "変更を登録", class: "btn btn-success" %></div></td>
-    
+    <td>
+      <br>
+      <div class="text-center">
+        <%= f.submit "変更を登録", class: "btn btn-sm btn-success" %>
+      </div>
+    </td>
+  
   <% end %>
   </table>
