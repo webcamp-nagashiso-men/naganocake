@@ -9,6 +9,7 @@
 
 
   <body>
+    <div id="wrapper">
 
 
     <header>
@@ -91,8 +92,17 @@
         <div class="alert alert-danger text-center" role="alert"><strong><%= alert %></strong></div>
       <% end %>
 
-  </body>
+
   <main>
     <%= yield %>
   </main>
+
+  <footer>
+    <div class="text-center">
+      <p>NaganoCake</p>
+      <p>@2021 nagashiso-men</p>
+    </div>
+  </footer>
+  </div>
+  </body>
 </html>

@@ -1,7 +1,8 @@
 class CartProduct < ApplicationRecord
   belongs_to :end_user
   belongs_to :product
-  
+  validates :product_id, :end_user_id, :quantity, presence: true
+
   def add_tax_price
     (self.product.price * 1.08).round
     #商品の合計金閣
@@ -20,7 +21,7 @@ class CartProduct < ApplicationRecord
     end
     return sum #全てのカート内商品の合計金額
   end
-  
+
 
 
 

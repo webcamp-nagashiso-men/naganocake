@@ -14,14 +14,16 @@ class Public::CartProductsController < ApplicationController
     @cart_product = current_end_user.cart_products.new(params_cart_product)
     @update_cart_product = CartProduct.find_by(product: @cart_product.product)
     #カートに入れた商品がカート内商品にあったときは数を足す
-    if @update_cart_product.present? #present? 存在すればtrue
+    if @update_cart_product.present? && @cart_product.valid? #present? 存在すればtrue
       @cart_product.quantity += @update_cart_product.quantity #カートに追加した個数 + カートにある個数 = 合計個数
       @update_cart_product.update(quantity: @cart_product.quantity) #quantitiy(@cart_productのquantity)
-    else #false = カートに同じ商品がない時
-      @cart_product.save
+    elsif @cart_product.save #false = カートに同じ商品がない時
+      redirect_to cart_products_path, notice: "カートに追加しました"
+    else
+      render ("cart_products/index")#手直し中
     end
 
-    redirect_to cart_products_path, notice: "カートに追加しました"
+
 
   end
 
