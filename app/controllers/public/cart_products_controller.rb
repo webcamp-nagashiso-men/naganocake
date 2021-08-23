@@ -20,7 +20,9 @@ class Public::CartProductsController < ApplicationController
     elsif @cart_product.save #false = カートに同じ商品がない時
       redirect_to cart_products_path, notice: "カートに追加しました"
     else
-      render ("cart_products/index")#手直し中
+      @product = Product.find(@cart_product.product_id)#14行目の@carp_productのproduct_idを探してくる
+      flash[:alert] = "個数を選択してください"
+      render("/public/products/show")
     end
 
 

@@ -4,7 +4,6 @@ class Product < ApplicationRecord
 
   belongs_to :genre
   attachment :image
-  has_many :cart_products, dependent: :destroy
 
 
   validates :name, :guide, :price, :genre_id, presence: true
@@ -13,6 +12,14 @@ class Product < ApplicationRecord
   def add_tax_price
     (self.price * 1.1).round
     #消費税計算をここで定義
+  end
+
+  def self.search(word)
+    if word.present?
+      Product.where(['name LIKE ?', "%#{word}%"])
+    else
+      Product.all
+    end
   end
 
 end
