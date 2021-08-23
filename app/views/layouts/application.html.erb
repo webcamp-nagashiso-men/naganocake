@@ -8,83 +8,96 @@
   </head>
 
 
-  <body>
+ <body id="wrapper">
+   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #FFDBC9;">
+      <a class="navbar-brand" href="#">
+        <% if admin_signed_in? %>
+          <%= link_to "NaganoCake", admin_products_path, class: "text-dark" %>
+        <% else %>
+          <%= link_to "NaganoCake", root_path, class: "text-dark" %>
+        <% end %>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
 
+       
 
-    <heaedr style= " border-bottom: 1px solid black;">
-     <nav class="navbar navbar-expand-lg">
-       <div class="container">
+     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+        
+       <% if signed_in? %>
 
-        <h2 class="nav navbar-nav navbar-left title" style="font-size: 30px;">
-          <% if admin_signed_in? %>
-            <%= link_to "NaganoCake", admin_products_path, class: "text-dark" %>
-          <% else %>
-            <%= link_to "NaganoCake", root_path, class: "text-dark" %>
-          <% end %>
-        </h2>
-
-
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-            <% if signed_in? %>
-
-              <li class= "name">
-                ようこそ <%= current_end_user.name_last %> さん！
-              </li>
-              <li>
-                <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-              <li>
-                <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-              <li>
-                <%= link_to "カート", cart_products_path, class: 'nav-link  badge badge-pill badge-light' %>
-              </li>
-              <li>
-                <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill badge-light' %>
-              </li>
-
-
-            <% elsif admin_signed_in? %>
-
-              <li>
-                <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-              <li>
-                <%= link_to "会員一覧", admin_end_users_path, class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-              <li>
-                <%= link_to "注文履歴一覧", class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-              <li>
-                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-              <li>
-                <%= link_to "ログアウト", admins_sign_ou_path, method: :delete,  class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-
-            <% else %>
-
-              <li>
-                <%= link_to "About", about_path, class: 'nav-link  badge badge-pill badge-light' %>
-              </li>
-              <li>
-                <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill badge-light' %>
-              </li>
-              <li>
-                <%= link_to "新規登録", new_end_user_registration_path, class: 'nav-link  badge badge-pill badge-light'%>
-              </li>
-              <li>
-                <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link  badge badge-pill badge-light' %>
-              </li>
-
-            <% end %>
-          </ul>
-        </div>
+       <li class= " badge badge-pill">
+        ようこそ <%= current_end_user.name_last %> さん！
+       </li>
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill '%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill '%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "カート", cart_products_path, class: 'nav-link  badge badge-pill ' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill ' %>
+          </li>
+         </ul>
        </div>
-     </nav>
-    </heaedr>
 
-    <%= yield %>
+　　　　<% elsif admin_signed_in? %>
+
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill'%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "会員一覧", admin_end_users_path, class: 'nav-link  badge badge-pill'%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "注文履歴一覧", class: 'nav-link  badge badge-pill'%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link  badge badge-pill'%>
+            </li>
+            <li class="nav-item ">
+              <%= link_to "ログアウト", admins_sign_ou_path, method: :delete,  class: 'nav-link  badge badge-pill badge-light'%>
+            </li>
+          </ul>
+       </div>
+
+          <% else %>
+
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <%= link_to "About", about_path, class: 'nav-link  badge badge-pill' %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill' %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to "新規登録", new_end_user_registration_path, class: 'nav-link  badge badge-pill'%>
+          </li>
+          <li class="nav-item ">
+            <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link  badge badge-pill' %>
+          </li>
+        </ul>
+      </div>
+
+          <% end %>
+          
+       </ul>
+      </div>
+    </nav>
+ 
+    <div class="container">
+      <%= yield %>
+    </div>
+    
   </body>
 </html>

@@ -1,2 +1,17 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<h4 class ="text-center m-5 border-bottom p-1">注文履歴詳細</h4>
+<h5>注文情報</h5>
+
+<p>注文日
+<%= @order.created_at.strftime('%Y/%m/%d') %>
+</p>
+<p>配送先
+〒<%= @order.postal_code %></br>
+<%= @order.address %></br>
+<%= @order.name %>
+</p>
+<p>支払方法
+<%= @order.payment_method %>
+</p>
+<p>ステータス
+<%= @order.order_status %>
+</p>
