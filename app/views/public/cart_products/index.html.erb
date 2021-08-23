@@ -1,3 +1,78 @@
-cartprodu
 
- <%= link_to "情報入力", new_order_path, class:"btn btn-primary" %>
+
+<div class="container contents">
+<div calss="row">
+  <div class="col-lg-11">
+    <h4>ショッピングカート</h4>
+    <% if @cart_products.present? %>
+    <div>
+      <%= link_to "カートを空にする", destroy_all_cart_products_path, method: :delete, data: {confirm: 'カートを空にします'}, class: "btn btn-danger" %>
+    </div>
+    <% end %>
+    <table class="table table-hover">
+      <thead><%# 表 %>
+        <tr>
+          <th>商品名</th>
+          <th>単価(税込)</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th><%# 削除ボタン用スペース %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <%# 消費税と個数はモデルで定義 %>
+        <% @cart_products.each do |cart_product| %>
+  			  <tr id="cart-<%= cart_product.id %>">
+            <td>
+              <%= attachment_image_tag(cart_product.product, :image, size: "80x55") %>
+              <%= cart_product.product.name %>
+            </td>
+            <td>
+              ¥<%= cart_product.add_tax_price.to_s(:delimited) %>
+              <%# add_tax_price = cart_product.rbで定義した1商品の合計金閣 %>
+            </td>
+            <td>
+              <%= form_for(cart_product, url: cart_product_path(cart_product), method: :patch , remote: true)do |f| %>
+                <%= f.number_field :quantity, size: 10, min: 1 %>
+                <%= f.submit "変更", class: "btn btn-info" %>
+              <% end %>
+            </td>
+            <td>
+              ¥<%= cart_product.add_tax_subtotal.to_s(:delimited) %>
+              <%# add_tax_subprice = cart_product.rbで定義した商品×の合計金閣 %>
+            </td>
+            <td>
+              <%= link_to " 削除する", cart_product_path(cart_product), method: :delete, remote: true, data: {confirm: "#{cart_product.product.name}を削除しますか？"}, class: "btn btn-danger" %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="col-lg-11">
+      <div>
+        <%= link_to " 買い物を続ける", products_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <table class="table">
+        <thead>
+          <tr>
+            <div class="totalprice">
+            <td>合計金額</td>
+            <td>
+              ¥<%= @cart_products.sum_price.to_s(:delimited) %>
+            </td>
+            </div>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-lg-5 text-center">
+      <%= link_to " 情報入力に進む", new_order_path, data: {"turbolinks" => false}, class: "glyphicon glyphicon-pencil btn btn-success center-block" %>
+    </div>
+
+  </div>
+</div>
+</div>
+

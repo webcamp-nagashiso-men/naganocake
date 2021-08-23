@@ -4,7 +4,7 @@
     <div class="col-lg-2">
 	<!--ジャンル検索-->
 	</div>
-	<div class="col-lg-10>
+	<div class="col-lg-10">
 		<div class="row">
       <div class="col-lg2 text-left">
 				<h3 class="text-center">
@@ -20,7 +20,7 @@
 		          <div class="col-lg-10">
 				        <% if product.is_active == true %>
                   <%= link_to product_path(product.id), class: "btn-link" do %>
-                    <%= attachment_image_tag(product, :image, size: "180x130") %>
+                    <%= attachment_image_tag(product, :image, size: "210x150") %>
                 <% end %>
               </div>
             </div>
@@ -43,6 +43,6 @@
         </div>
 	    <% end %>
 	  </div>
-	  <div class="text-center"><%= paginate(@products) %></div>
+	  <div class="col-lg-10"><div class="pagination"><%= paginate(@products) %></div></div>
   </div>
 </div>

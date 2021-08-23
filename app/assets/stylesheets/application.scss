@@ -15,8 +15,39 @@
  */
  @import "bootstrap";
  @import 'font-awesome-sprockets';
- @import 'font-awesome';
+　　@import 'font-awesome';
+　
+.heaedr_logo {
+ width: 350px;
+ height: 110px;
+}
+
+header {
+ background-color: #faebd7;
+}
+
+main {
+ padding-top: 20px;
+ padding-bottom: 20px;
+
+}
+
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+ background-color: #faebd7;
+ color: #4d2615;
+ padding-top: 20px;
+ padding-bottom: 20px;
+ bottom: 0;
+ margin-top: auto;
 
 .pagination {
  justify-content: center; 
+  
 }

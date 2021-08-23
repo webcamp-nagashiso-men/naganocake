@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
     resources :products
     resources :cart_products
+
+     delete 'cart_products' => 'cart_products#all_destroy', as: 'destroy_all_cart_products'
   
     get 'orders/complete' => 'orders#complete'
     resources :orders,only:[:index,:new,:show,:create]
