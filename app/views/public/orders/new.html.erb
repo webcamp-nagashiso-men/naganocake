@@ -1,10 +1,48 @@
 <h4>注文情報入力</h4>
 
+<%= form_for @order, url:  check_orders_path, local:true do |f| %>
 <h5>支払方法</h5>
-<h5 style="font-size: 25px;">
-                      <%= f.radio_button :payment_method, "クレジットカード", checked: true %>
-                      <%= f.label "クレジットカード" %>
-                      <br>
-                      <%= f.radio_button :payment_method, "銀行振込" %>
-                      <%= f.label "銀行振込" %>
-                    </h5>
+<p style="font-size: 15px;">
+     <%= select :order, :payment_method, Order.payment_methods.keys.to_a, include_blank: true %>
+</p>
+
+<h5>お届け先</h5>
+
+<%= f.radio_button :addresses, '0', checked: true %>
+<%= f.label :addresses, :'ご自身の住所'  %>
+<p>
+〒<%= current_end_user.postal_code %><%= current_end_user.address %><br>
+<%= current_end_user.name_last %><%= current_end_user.name_first %>
+</p>
+
+<p>
+<%= f.radio_button :addresses, '1' %>
+<%= f.label :addresses, :'登録済み住所から選択'  %>
+</p>
+<div class="col-md-11 text-left" style="margin-left: 20px; font-size: 25px;">
+
+</div>
+
+<p>
+<%= f.radio_button :addresses, '2'  %>
+<%= f.label :addresses, :'新しいお届け先'  %>
+</p>
+
+<div class="field">
+    <%= f.label :郵便番号（ハイフンなし） %>
+    <%= f.text_field :postal_code, autofocus: true, placeholder: "0000000", size: 15 %>
+</div>
+<div class="field">
+    <%= f.label :住所 %>
+    <%= f.text_field :address, autofocus: true, placeholder: "大阪府大阪市北区０−０", size: 50 %>
+</div>
+<div class="field">
+    <%= f.label :宛名 %>
+    <%= f.text_field :name, autofocus: true, placeholder: "粗品 せいや", size: 15 %>
+</div>
+
+<div class="col-md-12 text-center">
+    <%= f.submit "確認画面へ進む", class: "btn btn-lg btn-primary" %>
+</div>
+
+<% end %>
