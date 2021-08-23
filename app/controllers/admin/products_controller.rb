@@ -1,11 +1,13 @@
 class Admin::ProductsController < ApplicationController
-
+  # before_action :authenticate_admin!,only: [:create, :edit, :update, :index, :show, :new]
+  
   def new
     @product = Product.new
   end
 
   def index
     @products = Product.all
+    @products = Product.all.page(params[:page]).per(10)
   end
 
   def create
