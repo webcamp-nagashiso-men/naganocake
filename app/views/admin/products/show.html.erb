@@ -1,11 +1,12 @@
-<h2><span class="badge badge-light">商品詳細</span></h2>
-  <div class="container">
-    <div class ="row justify-content-center">
-      <dvi class="col-lg-4">
+<div class="container">
+  <h2><div class="badge badge-light">商品詳細</div></h2>
+  
+    <div class ="row">
+      <div class="col-lg-5">
         <%= attachment_image_tag(@product, :image, size: "370x250") %>
-      </dvi>
+      </div>
 
-      <div class="col-lg-8">
+      <div class="col-lg-5">
         <table class="mx-auto">
           <tr>
             <th>商品名</th>
@@ -32,22 +33,21 @@
             <th>販売ステータス</th>
             <th>
               <% if @product.is_active %>
-                販売中
+                <span style="color:green">販売中</span>
               <% else %>
-                販売停止中
+                <span style="color:gray">販売停止中</span>
               <% end %>
             </th>
           </tr>
-        </tabel>
       </div>
-
-      <tr>
-        <th>
-        <br>  
-        <div class="text-center">
-          <%= link_to "編集する", edit_admin_product_path(@product.id), class: "btn btn-sm btn-success" %>
-        </div>
-        </th>      
-      </tr>        
+          <tr>
+            <th>
+              <br>  
+              <div class="text-center">
+                <%= link_to "編集する", edit_admin_product_path(@product.id), class: "btn btn-sm btn-success" %>
+              </div>
+            </th>      
+          </tr>
+        </table>
     </div>
-  </div>  
+</div>  

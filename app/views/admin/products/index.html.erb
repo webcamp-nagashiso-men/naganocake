@@ -1,45 +1,49 @@
-<h2><span class="badge badge-light">商品一覧</span></h2>
-
-<div class="text-right">
-  <%= link_to "新規登録", new_admin_product_path, class: "btn btn-sm btn-success" %>
-</div>
-
-<br>
-<table class="table">
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-
-
-  <tbody>
-    <% @products.each do |product| %>
-    <tr>
-      <th><%= product.id %></th>
-
-      <th><%= link_to product.name, admin_product_path(product) %></th>
-
-      <th><%= product.price %></th>
-
-      <th><%= product.genre.name %></th>
-      
-      <th>
-        <% if product.is_active %>
-          販売中
-        <% else %>
-          販売停止中
-        <% end %>
-      </t>
-    </tr>
-  </tbody>
-    <% end %>
-</table>
+<div class="container">
+  <h2><span class="badge badge-light">商品一覧</span></h2>
+    <div class="text-right">
+      <%= link_to "新規登録", new_admin_product_path, class: "btn btn-sm btn-success" %>
+    </div>
   
-  <div class="text-center">
-    <%= paginate(@products) %>
+  <br>
+  <div class="row justify-content-center">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @products.each do |product| %>
+        <tr>
+          <th><%= product.id %></th>
+    
+          <th><u><%= link_to product.name, admin_product_path(product), class: "text-dark" %></u></th>
+    
+          <th><%= product.price %></th>
+    
+          <th><%= product.genre.name %></th>
+          
+          <th>
+            <% if product.is_active %>
+              <span style="color:green">販売中</span>
+            <% else %>
+              <span style="color:gray">販売停止中</span>
+            <% end %>
+          </t>
+        </tr>
+      </tbody>
+        <% end %>
+    </table>
+      
+      <div class="text-center">
+        <%= paginate(@products) %>
+      </div>
+
   </div>
+  </div>
+</div>
