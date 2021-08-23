@@ -1,4 +1,4 @@
-<h5>注文履歴一覧</h>
+<h4 class ="text-center m-5 border-bottom p-1">注文履歴一覧</h4>
 <table class='table table-bordered border-dark'>
     <thead>
         <tr>
@@ -25,9 +25,8 @@
             <td></td>
             <td></td>
             <td>
-                <%= order.status %>
+                <%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %>
             </td>
-            <td></td>
         </tr>
     </tbody>
     <% end %>

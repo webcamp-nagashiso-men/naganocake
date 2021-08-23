@@ -48,13 +48,12 @@ Rails.application.routes.draw do
 
     resources :products
     resources :cart_products
+  
+    get 'orders/complete' => 'orders#complete'
+    resources :orders,only:[:index,:new,:show,:create]
+    post 'orders/check' => 'orders#check'
+ 
 
-    resources :orders,only:[:index,:new,:show,:create] do
-      collection do
-      post '/check' => 'orders#check'
-      get 'complete'
-    end
-    end
 
   end
 
