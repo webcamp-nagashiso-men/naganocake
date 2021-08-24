@@ -10,8 +10,9 @@
             <th>注文詳細</th>
         </tr>
     </thead>
-     <% @order.each do |order| %>
-    <tbody>
+
+     <% @orders.each do |order| %>
+      <tbody>
         <tr>
             <td>
                 <%= order.created_at.strftime('%Y/%m/%d') %>
@@ -21,13 +22,30 @@
                 <%= order.address %><br>
                 <%= order.name %>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+
+                <% order.order_products.each do |order_product| %>
+                  <a><%= order_product.product.name %></a><br>
+                <% end %>
+            </td>
+           
+                
+            <td>
+                <% @sum = 0 %>
+                <% order.order_products.each do |order_product| %>
+                <% @sum +=  (order_product.purchase_price * order_product.quantity * 1.08).round %>
+                <% end %>
+                ¥<%= @sum + 800 %>
+            </td>
+             
+             <td><%= order.order_status %></td>
+           
             <td>
                 <%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %>
             </td>
         </tr>
     </tbody>
     <% end %>
+    
+    
 </table>

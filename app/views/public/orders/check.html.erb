@@ -10,14 +10,18 @@
       <th>小計</th>
     </tr>
   </thead>
+
+    <% @cart_products.each do |cart_product| %>
   <tbody>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><%= cart_product.product.name %></td>
+      <td>¥ <%= cart_product.add_tax_price.to_s(:delimited) %>(税込)</td>
+      <td><%= cart_product.quantity %></td>
+      <td> ¥<%= cart_product.add_tax_subtotal.to_s(:delimited) %></td>
     </tr>
   </tbody>
+    <% end %>
+
 </table>
 
 <table class='table table-bordered border-dark'>
@@ -31,8 +35,10 @@
   <tbody>
     <tr>
       <td><%= @order.postage %></td>
-      <td></td>
-      <td></td>
+      <td> ¥<%= @cart_products.sum_price.to_s(:delimited) %></td>
+      <td><% @total = @cart_products.sum_price + @order.postage %>
+           ¥<%= @total.to_s(:delimited) %>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -44,9 +50,11 @@
         <%= @order.postal_code %></br>
         <%= @order.address %></br>
         <%= @order.name %>
-      </div>
+    </div>
 
 <%=form_for @order, url: orders_path, local:true do |f| %>
+
+ 
   <%= f.hidden_field :postal_code, :value => @order.postal_code %>
   <%= f.hidden_field :address, :value => @order.address %>
   <%= f.hidden_field :name, :value => @order.name %>
@@ -54,8 +62,9 @@
   <%= f.hidden_field :payment_method, :value => @order.payment_method %>
   <%= f.hidden_field :end_user_id, :value => current_end_user.id %>
   <%= f.hidden_field :postage, :value => 800 %>
-  <%#= f.hidden_field :total_price, :value => @order. %>
-<div class="col-md-12 text-center">
+  <%= f.hidden_field :total_price, value: @total.to_s(:delimited) %>
+
+<div class="col-md-12">
     <%= f.submit "注文を確定する", class: "btn btn-sm btn-success" %>
 </div>
 

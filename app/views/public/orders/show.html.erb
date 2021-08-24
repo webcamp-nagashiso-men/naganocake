@@ -15,3 +15,50 @@
 <p>ステータス
 <%= @order.order_status %>
 </p>
+
+<p>注文内容</p>
+<table class='table table-bordered border-dark'>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+    </tr>
+  </thead>
+
+<% @sum = 0 %>
+<% @order.order_products.each do |order_product| %>
+  <tbody>
+    <tr>
+      <td><%= order_product.product.name %></td>
+      <td>¥ <%= order_product.purchase_price.to_s(:delimited) %>(税抜)</td>
+      <td><%= order_product.quantity %></td>
+      <td> ¥<%= (order_product.purchase_price * order_product.quantity * 1.08).round %></td>
+      <% @sum +=  (order_product.purchase_price * order_product.quantity * 1.08).round %>
+    </tr>
+  </tbody>
+    <% end %>
+</table>
+
+ <table class='table table-bordered border-dark'>
+  <thead>
+    <tr>
+      <th>商品合計</th>
+      <th>送料</th>
+      <th>請求金額</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>¥<%= @sum %></td>
+      <td><%= @order.postage %></td>
+      <td><%= @sum + @order.postage %>
+      </td>
+    </tr>
+  </tbody>
+
+
+</table>
+<%= link_to "注文履歴一覧へ戻る", orders_path, class: "btn btn-info order-index-back" %>
+<%= link_to "マイページへ戻る", end_user_path(current_end_user), class: "btn btn-info order-index-back" %>
