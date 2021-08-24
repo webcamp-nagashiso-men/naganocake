@@ -9,10 +9,10 @@
 
 
 
- 
-       
+
+
     <header>
-     
+
      <nav class="navbar navbar-expand-lg">
        <div class="container">
 
@@ -27,7 +27,7 @@
 
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
-            <% if signed_in? %>
+            <% if end_user_signed_in? %>
 
               <li class= "name">
                 ようこそ <%= current_end_user.name_last %> さん！
@@ -45,48 +45,24 @@
                 <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill ' %>
               </li>
 
-
-            <% elsif admin_signed_in? %>
-
-
-       <li class= " badge badge-pill">
-        ようこそ <%= current_end_user.name_last %> さん！
-       </li>
-       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul class="navbar-nav mr-auto">
-          <li class="nav-item ">
-            <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill '%>
-          </li>
-          <li class="nav-item">
-            <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill '%>
-          </li>
-          <li class="nav-item">
-            <%= link_to "カート", cart_products_path, class: 'nav-link  badge badge-pill ' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill ' %>
-          </li>
-         </ul>
-       </div>
-
-　　　　<% elsif admin_signed_in? %>
+　<% elsif admin_signed_in? %>
 
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
          <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-              <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill'%>
+              <%= link_to "商品一覧", admin_products_path, class: 'nav-link  badge badge-pill'%>
             </li>
             <li class="nav-item ">
               <%= link_to "会員一覧", admin_end_users_path, class: 'nav-link  badge badge-pill'%>
             </li>
             <li class="nav-item ">
-              <%= link_to "注文履歴一覧", class: 'nav-link  badge badge-pill'%>
+              <%= link_to "注文履歴一覧", admin_orders_path,class: 'nav-link  badge badge-pill'%>
             </li>
             <li class="nav-item ">
               <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link  badge badge-pill'%>
             </li>
             <li class="nav-item ">
-              <%= link_to "ログアウト", admins_sign_ou_path, method: :delete,  class: 'nav-link  badge badge-pill badge-light'%>
+              <%= link_to "ログアウト", admins_sign_out_path, method: :delete,  class: 'nav-link  badge badge-pill badge-light'%>
             </li>
           </ul>
        </div>
@@ -111,9 +87,9 @@
       </div>
 
           <% end %>
-          
+
        </ul>
-      </div>  
+      </div>
      </nav>
     </header>
       <% if flash[:notice] %>
