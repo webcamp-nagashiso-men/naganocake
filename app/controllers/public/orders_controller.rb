@@ -24,23 +24,42 @@ class Public::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
     end
+
+    @cart_products = current_end_user.cart_products
   end
 
   def create
+    @cart_products = current_end_user.cart_products
+
     @order = Order.new(order_params)
     @order.save
     redirect_to orders_complete_path
+
+    @cart_products.each do |cart_product|
+      OrderProduct.create(
+        product_id: cart_product.product.id,
+        order_id: @order.id,
+        quantity: cart_product.quantity,
+        purchase_price: cart_product.product.price,
+
+        )
+    end
+
+    @cart_products.destroy_all
   end
 
   def complete
   end
 
   def index
-   @order = current_end_user.orders
+   @order = Order.all
+   @orders = current_end_user.orders
   end
 
   def show
    @order = Order.find(params[:id])
+   @order_products = @order.order_products
+
   end
 
   private
