@@ -44,8 +44,21 @@
               <li>
                 <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill ' %>
               </li>
+              <li class="name-search">
+                <h5>商品名検索</h5>
+                <%= form_tag(products_path, :method => 'get') do %>
+                  <%= text_field_tag :word %><br>
+                  <span class="search-button col-lg-12 text-right">
+                    <%#= select_tag 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
+                    <%# options_for_select = セレクトボックスで表示する要素配列 今回は使わない %>
+                    <%= submit_tag "検索" %>
+                  </span>
+                <% end %>
+              </li>
+
 
 　<% elsif admin_signed_in? %>
+
 
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
          <ul class="navbar-nav mr-auto">
@@ -82,6 +95,15 @@
           </li>
           <li class="nav-item ">
             <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link  badge badge-pill' %>
+          </li>
+          <li class="name-search">
+            <h5>商品名検索</h5>
+            <%= form_tag(products_path, :method => 'get') do %>
+              <%= text_field_tag :word %><br>
+              <span class="search-button col-lg-12 text-right">
+                <%= submit_tag "検索" %>
+              </span>
+            <% end %>
           </li>
         </ul>
       </div>

@@ -6,7 +6,8 @@ class Public::ProductsController < ApplicationController
 
 	def index
       @genres = Genre.all
-      @products = Product.where(is_active: true).page(params[:page]).per(8)
+      @products = Product.search(params[:word]).page(params[:page]).per(8)
+      #@products = Product.all.page(params[:page]).per(8)
 	end
 
 	def show
