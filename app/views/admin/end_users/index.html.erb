@@ -1,8 +1,8 @@
- <div class="col-md-8 offset-md-1">
-      <h4>会員一覧</h4>
+ <div class="col-md-8 offset-md-2">
+      <h3><span class="badge badge-light">会員一覧</span></h3>
       <table class="table table-hover table-inverse">
        <thead>
-        <tr>
+        <tr class="bg-light">
           <th>会員ID</th>
           <th>氏名</th>
           <th>メールアドレス</th>
@@ -13,9 +13,9 @@
       <tbody>
        <tr>
         <td><%= end_user.id %></td>
-        <td><%= link_to end_user.name_last, admin_end_user_path(end_user) %><%= link_to end_user.name_first, admin_end_user_path(end_user) %></td>
+        <td><%= link_to end_user.name_last+end_user.name_first, admin_end_user_path(end_user) %></td>
         <td><%= end_user.email %></td>
-        <td><%= end_user.is_deleted ? '退会' : '有効' %></td>
+        <td ><%= end_user.is_deleted ? '退会' : '有効' %></td>
        </tr>
       </tbody>
       <% end %>
