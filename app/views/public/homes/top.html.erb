@@ -1,19 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-2">
-      <div class="name-search">
-        <% if end_user_signed_in? %>
-          <h5>商品名検索</h5>
-          <%= form_tag(products_path, :method => 'get') do %>
-            <%= text_field_tag :word %><br>
-            <span class="search-button col-lg-12 text-right">
-              <%#= f.select 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
-              <%# options_for_select = セレクトボックスで表示する要素配列 %>
-              <%= submit_tag "検索" %>
-            </span>
-          <% end %>
-        <% end %>
-      </div>
+      
       <table class="table table-bordered genre-table">
         <thead>
           <tr>
