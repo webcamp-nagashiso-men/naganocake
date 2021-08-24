@@ -8,10 +8,7 @@
 		<div class="row">
       <div class="col-lg2 text-left">
 				<h3 class="text-center">
-				  <% if @null == "null" %>
-				  <%# if @products.empty? %> <%# @productsの中身が存在するかチェック %>
-		        <p>該当する商品はありません</p>
-		      <% else %>
+
 
 					<p><span>商品一覧</span>(全<%= @products.count %>件)</p>
 				</h3>
@@ -48,7 +45,7 @@
             </div>
           </div>
       <% end %>
-	    <% end %>
+
 
 	  </div>
 	  <div class="col-lg-10"><div class="pagination"><%= paginate(@products) %></div></div>
