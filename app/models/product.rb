@@ -5,7 +5,6 @@ class Product < ApplicationRecord
   belongs_to :genre
   attachment :image
 
-
   validates :name, :guide, :price, :genre_id, presence: true
   validates :price, numericality: { only_integer: true }
 

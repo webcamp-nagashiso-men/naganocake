@@ -45,12 +45,11 @@ Rails.application.routes.draw do
     resources :cart_products
      delete 'cart_products' => 'cart_products#all_destroy', as: 'destroy_all_cart_products'
 
-    resources :orders,only:[:index,:new,:show,:create] do
-      collection do
-      post '/check' => 'orders#check'
-      get 'complete'
-    end
-    end
+
+    get 'orders/complete' => 'orders#complete'
+    resources :orders,only:[:index,:new,:show,:create]
+    post 'orders/check' => 'orders#check'
+
 
   end
 
