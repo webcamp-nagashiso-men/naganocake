@@ -5,12 +5,12 @@ class CartProduct < ApplicationRecord
   validates :product_id, :end_user_id, :quantity, presence: true
 
   def add_tax_price
-    (self.product.price * 1.08).round
+    (self.product.price * 1.1).round
     #商品の合計金閣
   end
 
   def add_tax_subtotal
-    (self.product.price * self.quantity * 1.08).round
+    (self.product.price * self.quantity * 1.1).round
     #商品×個数の合計金額
   end
 

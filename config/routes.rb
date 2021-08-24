@@ -4,11 +4,17 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
 
+
   devise_for :admins, controllers: {
     sessions: 'admins/sessions',
     passwords: 'admins/passwords',
     registrations: 'admins/registrations'
   }
+
+  devise_for :admins, skip: [:sessions]
+  devise_for :end_users
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 
   # 管理者側のルーティング設定
   namespace :admin do
@@ -16,7 +22,6 @@ Rails.application.routes.draw do
     resources :end_users
     resources :genres
     resources :orders
-    resources :order_products
     get 'order_products/:id' => 'order_products#update'
   end
 
@@ -48,13 +53,12 @@ Rails.application.routes.draw do
 
     resources :products
     resources :cart_products
-
      delete 'cart_products' => 'cart_products#all_destroy', as: 'destroy_all_cart_products'
-  
+
+
     get 'orders/complete' => 'orders#complete'
     resources :orders,only:[:index,:new,:show,:create]
     post 'orders/check' => 'orders#check'
- 
 
 
   end

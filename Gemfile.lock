@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/manfe/refile.git
+  remote: git://github.com/manfe/refile.git
   revision: 46b4178654e60bb5846b1423acf6d0740cdecc25
   specs:
     refile (0.6.2)
@@ -105,6 +105,9 @@ GEM
     kaminari-activerecord (1.2.1)
       activerecord
       kaminari-core (= 1.2.1)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     kaminari-core (1.2.1)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -255,6 +258,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
+  kaminari-bootstrap (~> 3.0.1)
   listen (~> 3.0.5)
   pry-byebug
   puma (~> 3.0)

@@ -18,7 +18,7 @@
               <%# add_tax_price=models/product.rbで消費税定義 %>
               (税込)
             </strong>
-
+              <% if signed_in? %>
                 <% if @product.is_active == true %>
                   <%= form_for(@cart_product , url: cart_products_path , method: :post) do |f| %>
                     <%= f.hidden_field :product_id, value: @product.id %>
@@ -26,9 +26,11 @@
                     <%= f.submit "カートに入れる", class: "btn btn-success" %>
                     <% end %>
                   <% else %>
-                    <h4>SOLD OUT</h4>
+                    <h4 class="sold-out">SOLD OUT</h4>
                 <% end %>
-
+              <% else %>
+                <strong class="messages"><br>注文にはログインが必要です</strong>
+              <% end %>
           </td>
         </tr>
 
