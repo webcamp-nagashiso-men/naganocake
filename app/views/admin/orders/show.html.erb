@@ -4,24 +4,22 @@
   <table class="table">
     <tr>
       <th>購入者</th>
-      <th><%= @order.end_user.name_last %><%= @order.end_user.name_first %></th>
+      <td><%= @order.end_user.name_last %><%= @order.end_user.name_first %></td>
     </tr>
 
     <tr>
       <th>注文日</th>
-      <th><%= @order.created_at.strftime('%Y/%m/%d') %></th>
+      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
     </tr>
 
     <tr>
       <th>配送先</th>
-      <th class="text-left">〒<%= @order.postal_code %><br>
-    　　    <%= @order.address%><br>
-    　　    <%= @order.name%></th>
+      <td class="text-left">〒<%= @order.postal_code %> <%= @order.address%><br><%= @order.name%><td>
     </tr>
 
     <tr>
       <th>支払方法</th>
-      <th><%= @order.payment_method%></th>
+      <td><%= @order.payment_method%></td>
     </tr>
 
 
@@ -72,7 +70,7 @@
   <div class="total col-3 pl-4 pb-3 align-self-end ">
 
        <h5>商品合計　　<%= @order_products.sum_price.to_s(:delimited) %>円</h5>
-       <h5>送料　　　　　　<%= @order.postage %>円</h5>
+       <h5>送料　　　　　<%= @order.postage %>円</h5>
        <h5>請求金額合計  <%= (@order_products.sum_price.to_i + @order.postage.to_i) .to_s(:delimited) %>円</h5>
 
   </div>
