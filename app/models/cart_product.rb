@@ -1,7 +1,7 @@
 class CartProduct < ApplicationRecord
   belongs_to :end_user
   belongs_to :product
-  
+
   validates :product_id, :end_user_id, :quantity, presence: true
 
   def add_tax_price
