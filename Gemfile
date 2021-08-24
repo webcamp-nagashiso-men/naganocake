@@ -55,3 +55,5 @@ gem "refile-mini_magick"
 gem "devise"
 
 gem 'kaminari'
+
+gem 'kaminari-bootstrap', '~> 3.0.1'
