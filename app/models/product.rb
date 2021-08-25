@@ -6,7 +6,7 @@ class Product < ApplicationRecord
 
   attachment :image
 
-  validates :name, :guide, :price, :genre_id, presence: true
+  validates :name, :price, :genre_id, presence: true
   validates :price, numericality: { only_integer: true }
 
   def add_tax_price
