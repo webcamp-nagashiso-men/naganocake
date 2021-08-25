@@ -19,6 +19,7 @@
           <% else %>
             <%= link_to image_tag("horizontal_on_white_by_logaster (2).png", class:"heaedr_logo"), root_path, class: "text-dark" %>
           <% end %>
+
       </h2>
 
     <% if end_user_signed_in? %>
@@ -32,7 +33,7 @@
               <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill fas fa-home'%>
             </li>
             <li class="nav-item">
-              <%= link_to " 商品一覧", products_path, class: 'nav-link  badge badge-pill fa fa-birthday-cake'%>
+              <%= link_to " 商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill fa fa-birthday-cake'%>
             </li>
             <li class="nav-item">
               <%= link_to "カート", cart_products_path, class: 'nav-link badge badge-pill fas fa-shopping-cart'%>
@@ -41,13 +42,14 @@
               <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill fas fa-sign-out-alt ' %>
             </li>
             <div class="form-inline my-2 my-lg-0">
-                <%= form_tag(products_path, :method => 'get') do %>
-                <%= text_field :word, placeholder: "Search", class: "form-control mr-sm-2"%>
-              <button class="btn btn-outline-secondary my-2 my-sm-0 btn-sm" type="submit">Search</button>
+               <%= form_tag(products_path, :method => 'get') do %>
+               <%= text_field_tag :word, class: "form-control mr-sm-2" %><br>
+              <span class="search-button btn-outline-secondary my-2 my-sm-0 btn-sm">
+               <%= hidden_field_tag :key_value,"from_search"%>
             </div>
                     <%#= select_tag 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
                     <%# options_for_select = セレクトボックスで表示する要素配列 今回は使わない %>
-                <% end %>
+               <% end %>
           </ul>
         </div>
 
@@ -81,7 +83,10 @@
             <%= link_to " About", about_path, class: 'nav-link  badge badge-pill fas fa-link' %>
           </li>
           <li class="nav-item ">
-            <%= link_to " 商品一覧", products_path, class: 'nav-link  badge badge-pill fa fa-birthday-cake' %>
+
+
+            <%= link_to "商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill fa fa-birthday-cake' %>
+
           </li>
           <li class="nav-item ">
             <%= link_to " 新規登録", new_end_user_registration_path, class: 'nav-link  badge badge-pill fas fa-user-plus'%>
@@ -90,13 +95,14 @@
             <%= link_to " ログイン", new_end_user_session_path, class: 'nav-link  badge badge-pill fas fa-sign-in-alt' %>
           </li>
           <div class="form-inline my-2 my-lg-0">
-            <%= form_tag(products_path, :method => 'get') do %>
-            <%= text_field :word, placeholder: "Search", class: "form-control mr-sm-2"%>
-            <button class="btn btn-outline-secondary my-2 my-sm-0 btn-sm" type="submit">Search</button>
-          </div>
+               <%= form_tag(products_path, :method => 'get') do %>
+               <%= text_field_tag :word, class: "form-control mr-sm-2" %><br>
+              <span class="search-button btn-outline-secondary my-2 my-sm-0 btn-sm">
+               <%= hidden_field_tag :key_value,"from_search"%>
+            </div>
                     <%#= select_tag 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
                     <%# options_for_select = セレクトボックスで表示する要素配列 今回は使わない %>
-            <% end %>
+               <% end %>
         </ul>
       </div>
 

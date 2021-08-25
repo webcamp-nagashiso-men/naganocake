@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   }
 
   devise_for :admins, skip: [:sessions]
-  
 
   # 管理者側のルーティング設定
   namespace :admin do
