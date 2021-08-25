@@ -36,7 +36,7 @@
                 <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill '%>
               </li>
               <li>
-                <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill '%>
+                <%= link_to "商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill '%>
               </li>
               <li>
                 <%= link_to "カート", cart_products_path, class: 'nav-link  badge badge-pill ' %>
@@ -49,6 +49,7 @@
                 <%= form_tag(products_path, :method => 'get') do %>
                   <%= text_field_tag :word %><br>
                   <span class="search-button col-lg-12 text-right">
+                     <%= hidden_field_tag :key_value,"from_search"%>
                     <%#= select_tag 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
                     <%# options_for_select = セレクトボックスで表示する要素配列 今回は使わない %>
                     <%= submit_tag "検索" %>
@@ -88,7 +89,7 @@
             <%= link_to "About", about_path, class: 'nav-link  badge badge-pill' %>
           </li>
           <li class="nav-item ">
-            <%= link_to "商品一覧", products_path, class: 'nav-link  badge badge-pill' %>
+            <%= link_to "商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill' %>
           </li>
           <li class="nav-item ">
             <%= link_to "新規登録", new_end_user_registration_path, class: 'nav-link  badge badge-pill'%>
@@ -99,6 +100,7 @@
           <li class="name-search">
             <h5>商品名検索</h5>
             <%= form_tag(products_path, :method => 'get') do %>
+              <%= hidden_field_tag :key_value,"from_search"%>
               <%= text_field_tag :word %><br>
               <span class="search-button col-lg-12 text-right">
                 <%= submit_tag "検索" %>
