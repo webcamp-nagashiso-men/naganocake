@@ -35,6 +35,6 @@ class Public::EndUsersController < ApplicationController
     params.require(:end_user).permit(:name_last, :name_first, :hurigana_last, :hurigana_first, :email, :postal_code, :address, :telephone_number)
   end
  
-  end
+end
  
 

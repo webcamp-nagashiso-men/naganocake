@@ -45,6 +45,7 @@
               <br>  
               <div class="text-center">
                 <%= link_to "編集する", edit_admin_product_path(@product.id), class: "btn btn-sm btn-success" %>
+                <%= link_to "削除する", admin_product_path(@product.id), method: :delete, "data-confirm" => "いいのかい？本当にいいのかい？", class:"btn btn-sm btn-danger" %>
               </div>
             </th>      
           </tr>

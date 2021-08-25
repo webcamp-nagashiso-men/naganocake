@@ -1,68 +1,62 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Naganocake</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">9187BE9E-69C4-4E16-8184-30FDFA8EE5B9</font></font>
   </head>
 
 
+ <header class = "fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light " >
 
-
-
-    <header>
-
-     <nav class="navbar navbar-expand-lg">
-       <div class="container">
-
-        <h2 class="nav navbar-nav navbar-left title" style="font-size: 30px;">
+      <h2 class="nav navbar-nav navbar-left title" style="font-size: 30px;">
           <% if admin_signed_in? %>
             <%= link_to image_tag("horizontal_on_white_by_logaster (2).png", class:"heaedr_logo"), admin_products_path, class: "text-dark" %>
           <% else %>
             <%= link_to image_tag("horizontal_on_white_by_logaster (2).png", class:"heaedr_logo"), root_path, class: "text-dark" %>
           <% end %>
-        </h2>
 
+      </h2>
 
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav ml-auto">
-            <% if end_user_signed_in? %>
+    <% if end_user_signed_in? %>
 
-              <li class= "name">
-                ようこそ <%= current_end_user.name_last %> さん！
-              </li>
-              <li>
-                <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill '%>
-              </li>
-              <li>
-                <%= link_to "商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill '%>
-              </li>
-              <li>
-                <%= link_to "カート", cart_products_path, class: 'nav-link  badge badge-pill ' %>
-              </li>
-              <li>
-                <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill ' %>
-              </li>
-              <li class="name-search">
-                <h5>商品名検索</h5>
-                <%= form_tag(products_path, :method => 'get') do %>
-                  <%= text_field_tag :word %><br>
-                  <span class="search-button col-lg-12 text-right">
-                     <%= hidden_field_tag :key_value,"from_search"%>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="welcome nav-item ">
+              ようこそ <%= current_end_user.name_last %> さん！
+            </li>
+            <li class="nav-item">
+              <%= link_to "マイページ", end_user_path(current_end_user), class: 'nav-link  badge badge-pill fas fa-home'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to " 商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill fa fa-birthday-cake'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "カート", cart_products_path, class: 'nav-link badge badge-pill fas fa-shopping-cart'%>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, class: 'nav-link  badge badge-pill fas fa-sign-out-alt ' %>
+            </li>
+            <div class="form-inline my-2 my-lg-0">
+               <%= form_tag(products_path, :method => 'get') do %>
+               <%= text_field_tag :word, class: "form-control mr-sm-2" %><br>
+              <span class="search-button btn-outline-secondary my-2 my-sm-0 btn-sm">
+               <%= hidden_field_tag :key_value,"from_search"%>
+            </div>
                     <%#= select_tag 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
                     <%# options_for_select = セレクトボックスで表示する要素配列 今回は使わない %>
-                    <%= submit_tag "検索" %>
-                  </span>
-                <% end %>
-              </li>
+               <% end %>
+          </ul>
+        </div>
 
-
-　<% elsif admin_signed_in? %>
-
+　  <% elsif admin_signed_in? %>
 
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul class="navbar-nav mr-auto">
+         <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
               <%= link_to "商品一覧", admin_products_path, class: 'nav-link  badge badge-pill'%>
             </li>
@@ -83,39 +77,41 @@
 
     <% else %>
 
-       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-         <ul class="navbar-nav mr-auto">
+       <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item ">
-            <%= link_to "About", about_path, class: 'nav-link  badge badge-pill' %>
-          </li>
-          <li class="nav-item ">
-            <%= link_to "商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill' %>
+            <%= link_to " About", about_path, class: 'nav-link  badge badge-pill fas fa-link' %>
           </li>
           <li class="nav-item ">
-            <%= link_to "新規登録", new_end_user_registration_path, class: 'nav-link  badge badge-pill'%>
+
+
+            <%= link_to "商品一覧", products_path('search[value]': ""), class: 'nav-link  badge badge-pill fa fa-birthday-cake' %>
+
           </li>
           <li class="nav-item ">
-            <%= link_to "ログイン", new_end_user_session_path, class: 'nav-link  badge badge-pill' %>
+            <%= link_to " 新規登録", new_end_user_registration_path, class: 'nav-link  badge badge-pill fas fa-user-plus'%>
           </li>
-          <li class="name-search">
-            <h5>商品名検索</h5>
-            <%= form_tag(products_path, :method => 'get') do %>
-              <%= hidden_field_tag :key_value,"from_search"%>
-              <%= text_field_tag :word %><br>
-              <span class="search-button col-lg-12 text-right">
-                <%= submit_tag "検索" %>
-              </span>
-            <% end %>
+          <li class="nav-item ">
+            <%= link_to " ログイン", new_end_user_session_path, class: 'nav-link  badge badge-pill fas fa-sign-in-alt' %>
           </li>
+          <div class="form-inline my-2 my-lg-0">
+               <%= form_tag(products_path, :method => 'get') do %>
+               <%= text_field_tag :word, class: "form-control mr-sm-2" %><br>
+              <span class="search-button btn-outline-secondary my-2 my-sm-0 btn-sm">
+               <%= hidden_field_tag :key_value,"from_search"%>
+            </div>
+                    <%#= select_tag 'search[how]', options_for_select({ "部分一致" => "partical", "完全一致" => "match" }) %>
+                    <%# options_for_select = セレクトボックスで表示する要素配列 今回は使わない %>
+               <% end %>
         </ul>
       </div>
 
-          <% end %>
+    <% end %>
 
-       </ul>
-      </div>
      </nav>
     </header>
+
+
       <% if flash[:notice] %>
         <div class="alert alert-primary text-center" role="alert"><strong><%= notice %></strong></div>
       <% end %>
@@ -124,19 +120,20 @@
       <% end %>
 
 
-  <main>
-    <div class="container">
-    　　<%= yield %>
-    </div>
-  </main>
+    <main>
+      <div class="container">
+      　　<%= yield %>
+      </div>
+    </main>
 
-  <footer>
-    <div class="text-center">
-      <p>NaganoCake</p>
-      <p>@2021 nagashiso-men</p>
-    </div>
-  </footer>
-  </div>
 
+    <footer>
+      <div class="welcome text-center">
+        <p>NaganoCake</p>
+        <p>@2021 nagashiso-men</p>
+      </div>
+    </footer>
+
+  　</div>
   </body>
 </html>
