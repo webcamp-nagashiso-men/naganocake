@@ -12,9 +12,6 @@ Rails.application.routes.draw do
   }
 
   devise_for :admins, skip: [:sessions]
-  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 
   # 管理者側のルーティング設定
   namespace :admin do

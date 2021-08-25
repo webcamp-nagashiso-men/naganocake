@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_many :cart_products, dependent: :destroy
   has_many :orders, through: :order_product
   belongs_to :genre
- 
+
   attachment :image
 
   validates :name, :price, :genre_id, presence: true
@@ -17,6 +17,14 @@ class Product < ApplicationRecord
   def self.search(word) #今回の場合selfにproductを代入して使う
     if word.present?
       Product.where(['name LIKE ?', "%#{word}%"]) #whereは完全一致 LIKE ? を書くことで部分一致なども使えるようになる
+    else
+      Product.all
+    end
+  end
+
+  def self.search(value)
+    if value.present?
+      Product.where('genre.name')
     else
       Product.all
     end
