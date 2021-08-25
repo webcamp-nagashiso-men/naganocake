@@ -14,7 +14,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(product_params)
     if @product.save
       flash[:notice] = "登録完了"
-      redirect_to admin_products_path
+      redirect_to admin_product_path(@product)
     else
       render :new
     end  
