@@ -1,69 +1,79 @@
-<h2>注文履歴詳細</h2>
+
+<h2><span class="badge badge-light">注文履歴詳細</span></h2>
 
   <table class="table">
     <tr>
       <th>購入者</th>
-      <th><%= @order.end_user.name_last %><%= @order.end_user.name_first %></th>
+      <td><%= @order.end_user.name_last %><%= @order.end_user.name_first %></td>
     </tr>
 
     <tr>
       <th>注文日</th>
-      <th><%= @order.created_at.strftime('%Y/%m/%d') %></th>
+      <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
     </tr>
 
     <tr>
       <th>配送先</th>
-      <th>〒<%= @order.postal_code %><br>
-    　　    <%= @order.address%><br>
-    　　    <%= @order.name%></th>
+      <td class="text-left">〒<%= @order.postal_code %> <%= @order.address%><br><%= @order.name%><td>
     </tr>
 
     <tr>
       <th>支払方法</th>
-      <th><%= @order.payment_method%></th>
+      <td><%= @order.payment_method%></td>
     </tr>
 
-    <%= form_for @order, url: admin_order_path, local:true do |f| %>
+
     <tr>
       <th>注文ステータス</th>
-      <th><%= select :order, :order_status, Order.order_statuses.keys.to_a, include_blank: true %></th>
-      <th><%= f.submit "更新", class: "btn btn-success btn-sm" %></th>
+      <div class="row">
+       <%= form_for @order, url: admin_order_path, local:true do |f| %>
+      <th><%= f.select :order_status, Order.order_statuses.keys.to_a, include_blank: true %>
+      <%= f.submit "更新", class: "btn btn-success btn-sm" %></th>
+       <% end %>
+      </div>
     </tr>
-    <% end %>
+
   </table>
 
-
-  <div class="col-md-8 offset-md-1">
-      <table class="table table-hover table-inverse">
+ <div class="row">
+  <div class="col-8">
+　　 <table class="table table-hover table-inverse">
        <thead>
-        <tr>
+        <tr class="bg-light">
           <th>商品名</th>
           <th>単価（税込み）</th>
           <th>数量</th>
           <th>小計</th>
           <th>制作ステータス</th>
+          <th></th>
         </tr>
       </thead>
-       <% @order_products.each do |order_product| %>
+       <% @order_products.each do |order_products| %>
       <tbody>
        <tr>
-        <td><%= order_product.product.name %></td>
-        <td><%= tax_price(order_product.product.unit_price).to_s(:delimited) %>/td>
+        <td><%= order_products.product.name %></td>
+        <td>¥<%= order_products.add_tax_price.to_s(:delimited) %>(税込)</td>
         <td><%= order_products.quantity%></td>
-        <td><%= sub_total(order_product).to_s(:delimited) %></td>
-        <th><%= select :order, :order_products, Order.order_products.keys.to_a, include_blank: true %></th>
+        <td><%= order_products.add_tax_subtotal.to_s(:delimited) %></td>
+
+        <%= form_for order_products, url: admin_order_product_path(order_products), local:true do |f| %>
+        <th><%= f.select :make_status, OrderProduct.make_statuses.keys.to_a, include_blank: true %>
+        <%= f.submit "更新", class: "btn btn-success btn-sm" %></th>
+         <% end %>
        </tr>
       </tbody>
       <% end %>
-      </table>
-
-        <div class="total">
-     <h4>商品合計     <%= @order.total_price.to_i %>円</h4>
-     <h4>送料　　　    <%= @order.postage %>円</h4>
-     <h4>請求金額合計　<%= (@order.total_price.to_i + @order.postage.to_i) %>円</h4>
-    </div>
+    </table>
+  </div>
 
 
+  <div class="total col-3 pl-4 pb-3 align-self-end ">
 
-    </div>
+       <h5>商品合計　　<%= @order_products.sum_price.to_s(:delimited) %>円</h5>
+       <h5>送料　　　　　<%= @order.postage %>円</h5>
+       <h5>請求金額合計  <%= (@order_products.sum_price.to_i + @order.postage.to_i) .to_s(:delimited) %>円</h5>
+
+  </div>
+
+</div>
 

@@ -1,8 +1,9 @@
-<div class="col-md-8 offset-md-1">
-      <h4>注文履歴一覧</h4>
+
+<div class="col-md-8 offset-md-2">
+      <h3><span class="badge badge-light">注文履歴一覧</span></h3>
       <table class="table table-hover table-inverse">
        <thead>
-        <tr>
+        <tr class="bg-light">
           <th>購入日時</th>
           <th>購入者</th>
           <th>注文個数</th>
@@ -15,11 +16,7 @@
        <tr>
         <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M:%S"),admin_order_path(order)%></td>
         <td><%= order.end_user.name_last %><%= order.end_user.name_first %></td>
-        <td><% @amount = 0 %>
-            <% order.order_products.each do |order_product| %>
-            <% @amount += order_product.amount %>
-            <% end %>
-            <%= @amount %></td>
+        <td><%= order.order_products.sum(:quantity) %></td>
         <td><%= order.order_status %></td>
         </tr>
         <% end %>
