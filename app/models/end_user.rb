@@ -1,8 +1,8 @@
 class EndUser < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  
-  
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -15,6 +15,6 @@ class EndUser < ApplicationRecord
             presence: true
   validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
   validates :telephone_number, numericality: { only_integer: true }
- 
+
 
 end

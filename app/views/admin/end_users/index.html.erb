@@ -16,7 +16,11 @@
         <td><%= end_user.id %></td>
         <td><%= link_to end_user.name_last+end_user.name_first, admin_end_user_path(end_user) %></td>
         <td><%= end_user.email %></td>
-        <td ><%= end_user.is_deleted ? '退会' : '有効' %></td>
+        <th><% if end_user.is_deleted %>
+              <span style="color:gray">退会</span>
+            <% else %>
+              <span style="color:green">有効</span>
+            <% end %></th>
        </tr>
       </tbody>
       <% end %>
