@@ -2,7 +2,7 @@
 
 
 <table class='table table-bordered border-dark'>
-  <thead>
+  <thead class = "thead-light">
     <tr>
       <th>商品名</th>
       <th>単価（税込）</th>
@@ -25,7 +25,7 @@
 </table>
 
 <table class='table table-bordered border-dark'>
-  <thead>
+  <thead class = "thead-light">
     <tr>
       <th>送料</th>
       <th>商品合計</th>
@@ -43,18 +43,21 @@
   </tbody>
 </table>
 
-<h5>支払方法</h5>
+ <h5 class = "p-1 mb-3 bg-secondary text-white rounded order">　支払方法</h5>
+  <p class="pl-xl-5">
     <%= @order.payment_method %>
-<h5>お届け先</h5>
+  </p>
+<h5 class = "p-1 mb-3 bg-secondary text-white rounded order">　お届け先</h5>
    <div class="col-md-8 text-left">
-        <%= @order.postal_code %></br>
-        <%= @order.address %></br>
-        <%= @order.name %>
+      <p class="pl-xl-5">
+        〒<%= @order.postal_code %></br>
+        　<%= @order.address %></br>
+        　<%= @order.name %>
+      </p>
     </div>
 
+
 <%=form_for @order, url: orders_path, local:true do |f| %>
-
-
   <%= f.hidden_field :postal_code, :value => @order.postal_code %>
   <%= f.hidden_field :address, :value => @order.address %>
   <%= f.hidden_field :name, :value => @order.name %>
@@ -64,8 +67,8 @@
   <%= f.hidden_field :postage, :value => 800 %>
   <%= f.hidden_field :total_price, value: @total.to_s(:delimited) %>
 
-<div class="col-md-12">
-    <%= f.submit "注文を確定する", class: "btn btn-sm btn-success" %>
+<div class="col-md-12 text-center">
+    <%= f.submit "注文を確定する", class: "btn btn-lg btn-success" %>
 </div>
 
 <% end %>
