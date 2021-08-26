@@ -1,3 +1,5 @@
+<% if admin_signed_in? %>
+
 <h4><h3><span class="badge badge-pill badge-dark">ジャンル一覧・追加</span></h4>
 <% if @genre.errors.any? %>
     <%= @genre.errors.count %>件のエラーが発生しました
@@ -34,3 +36,7 @@
       <% end %>
 </table>
 </div>
+
+<% else %>
+  管理者専用ページです。閲覧のためにはログインが必要になります。
+<% end %>

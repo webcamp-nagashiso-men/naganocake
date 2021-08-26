@@ -1,3 +1,5 @@
+<% if admin_signed_in? %>
+
 <div class="container">
   <h2><span class="badge badge-pill badge-dark">商品編集</span></h2>
     <% if @product.errors.any? %>
@@ -14,34 +16,34 @@
     <th>商品画像</th>
     <th><%= f.attachment_field :image %></th>
     </tr>
-    
+
     <tr>
     <th>商品名</th>
     <th><%= f.text_field :name %></th>
     </tr>
-    
+
     <tr>
     <th>商品説明</th>
     <th><%= f.text_area :guide %></th>
     </tr>
-    
+
     <tr>
     <th>ジャンル</th>
     <th><%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "選択してください"} %></th>
     </tr>
-    
+
     <tr>
     <th>税抜価格</th>
     <th><%= f.text_field :price %>円</th>
     </tr>
-    
+
     <tr>
     <th>販売ステータス</th>
     <!--<th><%#= f.select :is_active %></th>-->
     <th><%= f.select :is_active, [["販売中","true"], ["販売停止中","false"]], include_blank: "--選択してください--" %></th>
     </tr>
   </table>
-    
+
     <br>
     <div class="text-center">
       <%= f.submit "変更を登録", class: "btn btn-sm btn-block btn-info" %>
@@ -49,3 +51,7 @@
   <% end %>
   </div>
 </div>
+
+<% else %>
+  管理者専用ページです。閲覧のためにはログインが必要になります。
+<% end %>

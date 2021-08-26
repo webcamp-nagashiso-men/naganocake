@@ -1,4 +1,4 @@
-
+<% if admin_signed_in? %>
 <%= form_for @end_user, url: admin_end_user_path, local: true do |f| %>
 <h2><span class="badge badge-light"><%= @end_user.name_last+@end_user.name_first %>さんの会員情報編集</span></h2>
   <table class="table">
@@ -45,4 +45,8 @@
 
 </table>
    <%= f.submit '変更を保存' ,class:"btn btn-success"%>
+<% end %>
+
+<% else %>
+  管理者専用ページです。閲覧のためにはログインが必要になります。
 <% end %>

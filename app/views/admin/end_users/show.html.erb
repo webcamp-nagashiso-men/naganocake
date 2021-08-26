@@ -1,5 +1,5 @@
 
-
+<% if admin_signed_in? %>
 <h2><span class="badge badge-pill badge-"><%= @end_user.name_last+@end_user.name_first %>さんの会員詳細</span></h2>
 
   <table class="table">
@@ -48,3 +48,6 @@
 
 <td><%= link_to "編集する", edit_admin_end_user_path(@end_user),class:"btn btn-success" %></td>
 <td><%= link_to "注文履歴一覧を見る", admin_orders_path(@orders),class:"btn btn-primary" %></td>
+<% else %>
+  管理者専用ページです。閲覧のためにはログインが必要になります。
+<% end %>

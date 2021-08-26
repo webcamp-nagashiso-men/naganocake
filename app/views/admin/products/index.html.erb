@@ -1,3 +1,4 @@
+<% if admin_signed_in? %>
 <div class="container">
   <h2><span class="badge badge-pill badge-dark">商品一覧</span></h2>
     <div class="text-right">
@@ -5,7 +6,7 @@
       <%= link_to new_admin_product_path do %>
         <i class="fas fa-kiwi-bird fa-3x new-button" style="color:#8a6d60;"></i>
                   <!--fas fa-birthday-cake-->
-      <% end %>   
+      <% end %>
     </div>
 
   <br>
@@ -51,3 +52,7 @@
   </div>
   </div>
 </div>
+
+<% else %>
+  管理者専用ページです。閲覧のためにはログインが必要になります。
+<% end %>
