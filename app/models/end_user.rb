@@ -16,5 +16,6 @@ class EndUser < ApplicationRecord
   validates :postal_code, length: {is: 7}, numericality: { only_integer: true }
   validates :telephone_number, numericality: { only_integer: true }
 
+  enum is_valid: { '有効': true, '退会済': false }
 
 end
