@@ -26,7 +26,6 @@ class Public::CartProductsController < ApplicationController
     end
 
 
-
   end
 
   def destroy
