@@ -1,12 +1,12 @@
 <div class="container">
-  <h2><div class="badge badge-light">商品詳細</div></h2>
+  <h2><div class="badge badge-pill badge-dark">商品詳細</div></h2>
     <div class ="row">
       <div class="col-lg-5">
         <%= attachment_image_tag(@product, :image, size: "370x250") %>
       </div>
 
       <div class="col-lg-7">
-        <table class="mx-auto">
+        <table class="table table-borderless">
           <tr>
             <th>商品名</th>
             <th><%= @product.name %></th>
@@ -24,7 +24,7 @@
         
           <tr>
             <th>税込価格<br>(税抜価格)</th>
-            <th><%= @product.add_tax_price.to_s(:dalimited) %></th>
+            <th><%= @product.add_tax_price.to_s(:dalimited) %>円</th>
             <th>(<%= @product.price %>)円</th>
           </tr>
         
@@ -43,7 +43,7 @@
             <th>
               <br>  
               <div class="text-center">
-                <%= link_to "編集する", edit_admin_product_path(@product.id), class: "btn btn-sm btn-success" %>
+                <%= link_to "編集する", edit_admin_product_path(@product.id), class: "btn btn-sm btn-info" %>
                 <%= link_to "削除する", admin_product_path(@product.id), method: :delete, "data-confirm" => "いいのかい？本当にいいのかい？", class:"btn btn-sm btn-danger" %>
               </div>
             </th>      

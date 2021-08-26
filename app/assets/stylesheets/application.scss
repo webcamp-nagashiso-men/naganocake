@@ -57,6 +57,12 @@ footer {
  justify-content: center;
 }
 
-main {
-    background-color: #fff7ed;
+.pagination>li>a {          
+  background: #ffe5c4;
+  border: none;
+  color: #696969;
+}
+
+body {
+ background-color: #fff7ed;
 }

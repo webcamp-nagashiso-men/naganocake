@@ -1,14 +1,18 @@
 <div class="container">
-  <h2><span class="badge badge-light">商品一覧</span></h2>
+  <h2><span class="badge badge-pill badge-dark">商品一覧</span></h2>
     <div class="text-right">
-      <i><%= link_to "新規登録", new_admin_product_path, class: "btn btn-success fas fa-bullseye" %></i>
+      <!--<i><%#= link_to "新規登録", new_admin_product_path, class: "btn btn-info fas fa-bullseye" %></i>-->
+      <%= link_to new_admin_product_path do %>
+        <i class="fas fa-kiwi-bird fa-3x new-button" style="color:#8a6d60;"></i>
+                  <!--fas fa-birthday-cake-->
+      <% end %>   
     </div>
 
   <br>
   <div class="row justify-content-center">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
-        <tr>
+        <tr class="bg-light">
           <th>商品ID</th>
           <th>商品名</th>
           <th>税抜価格</th>
