@@ -1,4 +1,4 @@
-
+<% if admin_signed_in? %>
 <div class="col-md-8 offset-md-2">
       <h3><span class="badge badge-pill badge-dark">注文履歴一覧</span></h3>
       <table class="table table-hover table-inverse">
@@ -24,3 +24,6 @@
      </table>
      <%= paginate(@orders) %>
     </div>
+<% else %>
+  管理者専用ページです。閲覧のためにはログインが必要になります。
+<% end %>

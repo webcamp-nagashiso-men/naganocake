@@ -1,3 +1,4 @@
+<% if admin_signed_in? %>
 <div class="container">
 <h2><span class="badge badge-pill badge-dark">商品新規登録</span></h2>
   <% if @product.errors.any? %>
@@ -49,3 +50,6 @@
   <% end %>
   </div>
 </div>
+<% else %>
+  管理者専用ページです。閲覧のためにはログインが必要になります。
+<% end %>

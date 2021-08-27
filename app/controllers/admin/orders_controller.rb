@@ -10,7 +10,7 @@ class Admin::OrdersController < ApplicationController
     @order_products = @order.order_products
   end
 
-def update
+ def update
     @order = Order.find(params[:id])
     @order.update(order_params)
        if @order.order_status == "入金確認"
