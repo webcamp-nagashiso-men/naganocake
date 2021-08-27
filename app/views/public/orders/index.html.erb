@@ -19,8 +19,8 @@
             </td>
             <td>
                 〒<%= order.postal_code %><br>
-                <%= order.address %><br>
-                <%= order.name %>
+                　<%= order.address %><br>
+                　<%= order.name %>
             </td>
             <td>
 
@@ -28,8 +28,8 @@
                   <a><%= order_product.product.name %></a><br>
                 <% end %>
             </td>
-           
-                
+
+
             <td>
                 <% @sum = 0 %>
                 <% order.order_products.each do |order_product| %>
@@ -37,17 +37,17 @@
                 <% end %>
                 ¥<%= @sum + 800 %>
             </td>
-             
+
              <td><%= order.order_status %></td>
-           
+
             <td>
                 <%= link_to "表示する", order_path(order.id), class:"btn btn-primary" %>
             </td>
         </tr>
     </tbody>
     <% end %>
-    
-    
+
+
 </table>
  <%= link_to "マイページへ戻る", end_user_path(current_end_user), class: "btn btn-info order-index-back" %>
 

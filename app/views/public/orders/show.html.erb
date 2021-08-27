@@ -1,7 +1,7 @@
 <h4 class ="text-center m-5 border-bottom p-1">注文履歴詳細</h4>
 
 
-<p>注文内容</p>
+<h5 class = "p-1 mb-3 bg-secondary text-white rounded order">注文内容</h5>
 <table class='table table-bordered border-dark'>
   <thead class ="thead-light">
     <tr>
@@ -43,22 +43,21 @@
     </tr>
   </tbody>
 </table>
-  <h5>注文情報</h5>
+  <h5 class = "p-1 mb-3 bg-secondary text-white rounded order">注文情報</h5>
 
-<p>注文日
-<%= @order.created_at.strftime('%Y/%m/%d') %>
-</p>
-<p>配送先
-〒<%= @order.postal_code %></br>
-<%= @order.address %></br>
-<%= @order.name %>
-</p>
-<p>支払方法
-<%= @order.payment_method %>
-</p>
-<p>ステータス
-<%= @order.order_status %>
-</p>
+    <p class = "font-weight-bold">注文日</p>
+    <p>　　<%= @order.created_at.strftime('%Y/%m/%d') %></p>
+    <p class = "font-weight-bold">配送先</p>
+    <p> 　〒<%= @order.postal_code %></br>
+    　　　<%= @order.address %></br>
+    　　　<%= @order.name %>
+    </p>
+    <p class = "font-weight-bold">支払方法</p>
+    <p>　　<%= @order.payment_method %>
+    </p>
+    <p class = "font-weight-bold">ステータス</p>
+    <p>　　<%= @order.order_status %>
+    </p>
 
 
 
