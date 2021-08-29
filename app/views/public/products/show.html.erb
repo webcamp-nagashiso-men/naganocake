@@ -2,42 +2,39 @@
   <div class="row">
     <div class="product-contents">
       <div>
-    <table class="product">
-      <tbody>
-
-        <tr>
-          <td>
-            <%= attachment_image_tag(@product, :image, size: "450x300" ) %>
-          </td>
-          <td>
-            <h4><strong><%= @product.name %></strong></h4>
-            <%= @product.guide %>
-            <br>
-            <strong>
-              ¥ <%= @product.add_tax_price.to_s(:delimited) %>
-              <%# add_tax_price=models/product.rbで消費税定義 %>
-              (税込)
-            </strong>
-              <% if signed_in? %>
-                <% if @product.is_active == true %>
-                  <%= form_for(@cart_product , url: cart_products_path, method: :post) do |f| %>
-                    <%= f.hidden_field :product_id, value: @product.id %>
-                    <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
-                    <%= f.submit "カートに入れる", class: "btn btn-success" %>
+        <table class="product">
+          <tbody>
+            <tr>
+              <td>
+                <%= attachment_image_tag(@product, :image, size: "450x300" ) %>
+              </td>
+              <td>
+                <h4><strong><%= @product.name %></strong></h4>
+                <%= @product.guide %>
+                <br>
+                <strong>
+                  ¥ <%= @product.add_tax_price.to_s(:delimited) %>
+                  <%# add_tax_price=models/product.rbで消費税定義 %>
+                  (税込)
+                </strong>
+                  <% if signed_in? %>
+                    <% if @product.is_active == true %>
+                      <%= form_for(@cart_product , url: cart_products_path, method: :post) do |f| %>
+                        <%= f.hidden_field :product_id, value: @product.id %>
+                        <%= f.select :quantity, options_for_select((1..10).to_a), include_blank: "個数選択" %>
+                        <%= f.submit "カートに入れる", class: "btn btn-success" %>
+                        <% end %>
+                      <% else %>
+                        <h4 class="sold-out">SOLD OUT</h4>
                     <% end %>
                   <% else %>
-                    <h4 class="sold-out">SOLD OUT</h4>
-                <% end %>
-              <% else %>
-                <strong class="messages"><br>注文にはログインが必要です</strong>
-              <% end %>
-          </td>
-        </tr>
-
-
-      </tbody>
-    </table>
-    </div>
+                    <strong class="messages"><br>注文にはログインが必要です</strong>
+                  <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
