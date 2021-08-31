@@ -28,19 +28,19 @@
     </tr>
 
     <tr>
-     <th>ジャンル</th>
-     <th><%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "選択してください"} %></th>
+       <th>ジャンル</th>
+       <th><%= f.collection_select :genre_id, Genre.all, :id, :name,{prompt: "選択してください"} %></th>
     </tr>
 
     <tr>
-    <th>税抜価格</th>
-    <th><%= f.text_field :price %>円</th>
+      <th>税抜価格</th>
+      <th><%= f.text_field :price %>円</th>
     </tr>
 
     <tr>
-    <th>販売ステータス</th>
-    <!--<th><%#= f.select :is_active %></th>-->
-    <th><%= f.select :is_active, [["販売中","true"], ["販売停止中","false"]], include_blank: "--選択してください--" %></th>
+      <th>販売ステータス</th>
+      <!--<th><%#= f.select :is_active %></th>-->
+      <th><%= f.select :is_active, [["販売中","true"], ["販売停止中","false"]], include_blank: "--選択してください--" %></th>
     </tr>
   </table>
 
