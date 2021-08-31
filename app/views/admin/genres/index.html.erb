@@ -1,22 +1,23 @@
 <% if admin_signed_in? %>
 
-<h4><h3><span class="badge badge-pill badge-dark">ジャンル一覧・追加</span></h4>
+<h4><span class="badge badge-pill badge-dark">ジャンル一覧・追加</span></h4>
 <% if @genre.errors.any? %>
     <%= @genre.errors.count %>件のエラーが発生しました
     <% @genre.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>
-  <% end %>
+<% end %>
 
 <br>
 <div class="col-lg-10">
-<%= form_for @genre, url: admin_genres_path, local: true do |f| %>
-<tbody>
-<th>ジャンル名</th><th><%= f.text_field :name %></th>
-<th><%= f.submit '新規登録', class: 'btn btn-success '%></th>
-</tbody>
-<% end %>
+ <%= form_for @genre, url: admin_genres_path, local: true do |f| %>
+ <tbody>
+  <th>ジャンル名</th><th><%= f.text_field :name %></th>
+  <th><%= f.submit '新規登録', class: 'btn btn-success '%></th>
+ </tbody>
+ <% end %>
 </div>
+
 <br>
 <div class="col-lg-md-5">
 <table class="table table-hover table-inverse">
