@@ -1,4 +1,7 @@
 # README
+ながのcake
+
+チーム：流しそうめん
 
 [ER図.pdf](https://github.com/webcamp-nagashiso-men/naganocake/files/7071970/ER.pdf)
 
